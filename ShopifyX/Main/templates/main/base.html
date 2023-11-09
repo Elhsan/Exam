@@ -1,0 +1,37 @@
+{% load django_bootstrap5 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+
+    {% block title %}
+      <title>Home</title>
+    {% endblock %}
+
+    {% bootstrap_css %}
+   
+    {% block link %}
+
+    {% endblock %}
+
+    {% block style %}
+
+    {% endblock %}
+  </head>
+  <body>
+
+
+          {% block content %}
+
+          {% endblock %}
+
+          {% block script %}
+
+          {% endblock %}
+       
+          
+  </body>
+</html>
