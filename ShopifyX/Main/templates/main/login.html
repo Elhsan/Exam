@@ -6,7 +6,6 @@
 
 {% block auth_content %}
   <div class="container">
-    <h1>Login</h1>
 
     {% include "form_snippets.html" with form=form btn_text='Login' %}
 
@@ -14,7 +13,7 @@
     <div class="mb-5">
         <small class="text-muted">
             Do not have an account?  
-            <a href="/accounts/signup">
+            <a href="{% url 'register' %}">
                 Create an account
             </a>
         </small>
