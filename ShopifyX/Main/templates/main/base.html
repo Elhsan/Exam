@@ -1,18 +1,18 @@
-{% load django_bootstrap5 %}
 {% load static %}
+{% load django_bootstrap5 %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'home.css' %}">
 
     {% block title %}
-      <title>Home</title>
+      <title>AC Django Project</title>
     {% endblock %}
 
     {% bootstrap_css %}
-   
+
     {% block link %}
 
     {% endblock %}
@@ -24,6 +24,17 @@
   <body>
 
 
+    {% if user.is_authenticated %}
+      <main id="logged-in-menu">
+        <div>
+         <p>1
+          
+         </p>
+        <div>
+          <div id="messages">
+            {% bootstrap_messages %}
+          </div>
+
           {% block content %}
 
           {% endblock %}
@@ -31,7 +42,25 @@
           {% block script %}
 
           {% endblock %}
-       
-          
+        </div>
+      </main>
+    {% else %}
+      <div class="logged-out-navbar">
+        <a style="float: left;" href="{% url 'home_page' %}">🏠</a>
+        
+        <a href="{% url 'register' %}">Registration</a>
+        <a href="{% url 'login' %}">Login</a>
+      </div>
+      <main id="logged-out-menu">
+        {% bootstrap_messages %}
+        {% block auth_content %}
+          <h1>Authenticate</h1>
+          <hr />
+        {% endblock %}
+      </main>
+    {% endif %}
+
+    {% bootstrap_javascript %}
+
   </body>
 </html>
