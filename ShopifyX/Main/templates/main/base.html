@@ -7,6 +7,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'css/authenticate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <title>{% block title %}
     AC Django Project
     {% endblock %}</title>
@@ -26,11 +27,8 @@
 
     {% if user.is_authenticated %}
       <main id="logged-in-menu">
-        <div>
-         <p>
-          
-         </p>
-        <div>
+        {% include "main/navbar.html" %}
+
           <div id="messages">
             {% bootstrap_messages %}
           </div>
@@ -56,7 +54,6 @@
       <main id="logged-out-menu">
         {% bootstrap_messages %}
         {% block auth_content %}
-          
         {% endblock %}
       </main>
     {% endif %}
