@@ -39,6 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Main',
     'django_bootstrap5',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.github',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'ShopifyX.urls'
@@ -68,6 +75,31 @@ TEMPLATES = [
         },
     },
 ]
+
+
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    # site for creating google auth service https://console.cloud.google.com/
+    'google': {
+
+        'APP': {
+            'client_id': '538991880397-eahtia99eroj7vcenqfp6m1qklgi16pj.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
+        }
+    },
+    # ============================================================================
+    # site for creating github auth service https://github.com/settings/developers
+    'github': {
+        'APP': {
+            'client_id': '',
+            'secret': '',
+            'key': ''
+        }
+    }
+}
+
 
 WSGI_APPLICATION = 'ShopifyX.wsgi.application'
 
@@ -123,7 +155,8 @@ LOGOUT_URL = 'logout'
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/img/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

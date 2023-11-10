@@ -1,0 +1,70 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+  <h2>Your Profile</h2>
+  <div class="row">
+    <div class="container">
+      <!-- User Info Form -->
+      <form class="user-info-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ u_form.as_p }}
+        <button type="submit" class="btn btn-primary">Update User Info</button>
+      </form>
+    </div>
+    <div class="container">
+        <!-- Profile Picture Form -->
+        <form class="profile-picture-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ p_form.as_table }}
+            <button type="submit" class="btn btn-primary">Update Profile Picture</button>
+        </form>
+    </div>
+  </div>
+
+  <style>
+    .container {
+        margin: 25px;
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
+      }
+      
+     
+      .username-field,
+      .password-field, {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+      }
+      
+      .username-field:focus,
+      .password-field:focus,{
+        outline: none;
+        border-color: #4a90e2;
+        box-shadow: 0px 0px 5px rgba(74, 144, 226, 0.5);
+      }
+      
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4a90e2;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold; /* or any other font-weight you prefer */
+        text-decoration: none; /* to remove underlines for links */
+        text-align: center; /* optional, to center the text */
+        cursor: pointer; /* add a pointer cursor on hover */
+      
+        /* You can add more styles as needed, such as margin, border, etc. */
+      }
+      .btn:hover {
+        background-color: #3067a8; /* Change the background color on hover */
+        /* Add any other styles for the hover effect */
+      }
+  </style>
+{% endblock %}
