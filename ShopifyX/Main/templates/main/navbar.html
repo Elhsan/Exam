@@ -3,8 +3,10 @@
 
 <nav>
   <div>
+    <a href="{% url 'home_page' %}">
     <img src="{% static "img/shopifyX.png" %}" alt="ShopifyX Logo">
     <span>ShopifyX</span>
+    </a>
   </div>
   <div>
     <a href="#">Товары</a>
@@ -13,7 +15,7 @@
     <a href="#">Создать товар</a>
   </div>
   <div>
-    <a href="#">
+    <a href="{% url 'profiles' %}">
       <img src="{% static "img/icon.png" %}" alt="ShopifyX Logo">
     </a>
   </div>
@@ -24,7 +26,9 @@
     margin: 0;
     padding: 0;
   }
-
+  a:hover {
+    color: #fff;
+  }
   nav {
     background-color: #333;
     color: #fff;
@@ -35,7 +39,7 @@
     min-width: 900px;
   }
 
-  nav a {
+  a {
     color: #fff;
     text-decoration: none;
     margin: 0 15px;

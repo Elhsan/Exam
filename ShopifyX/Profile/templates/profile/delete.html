@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+<div class="profiles-container">
+    <h2>Profiles</h2>
+    
+    <form method="post" >
+        {% csrf_token %}
+        <button type="submit" class="save-button">Delete</button>
+
+
+    </form>
+</div>
+<style>
+    .profiles-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+</style>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="profiles-container">
+    <h2>Profiles</h2>
+    {% for el in profiles %}
+      <div class="profile" style="background-color: {{ el.color }}">
+        <div class="name">{{ el.first_name }}</div>
+        <div class="birth-date">{{ el.birth_date }}</div>
+        <div class="interests">{{ el.interests }}</div>
+        <hr>
+        <a href="{% url 'profile_detail' el.id  %}" class="btn btn-warning " >посмотреть</a>
+        <a href="{% url 'delete_detail' el.id  %}" class="btn btn-warning " >удалить</a>
+      </div>
+    {% endfor %}
+  </div>
+
+  <style>
+    .profiles-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      h2 {
+        color: #333;
+      }
+      
+      .profile {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+        overflow: hidden;
+      }
+      
+      .name {
+        font-size: 18px;
+        font-weight: bold;
+      }
+      
+      .birth-date, .interests {
+        margin-top: 5px;
+        color: #555;
+        max-width: 400px; /* Максимальная высота текста */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      
+      /* Разные цвета для карточек */
+      .profile:nth-child(odd) {
+        background-color: #f2f2f2; /* Светлый цвет для нечетных карточек */
+      }
+      
+      .profile:nth-child(even) {
+        background-color: #e6e6e6; /* Темный цвет для четных карточек */
+      }
+      
+      
+  </style>
+{% endblock %}
