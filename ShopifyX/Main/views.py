@@ -4,9 +4,17 @@ from .forms import *
 from .models import *
 from django.http import JsonResponse
 from Profile.models import UserProfile
+from django.contrib.auth.decorators import login_required
 
 def home_page(request):
-    return render(request, 'main/home.html')
+    user_status = {
+        'is_active': request.user.is_active,
+        'is_staff': request.user.is_staff,
+        'is_superuser': request.user.is_superuser,
+        'username': request.user.username,
+    }
+    return render(request, 'main/home.html', {'user_status': user_status})
+
 
 def registration(request):
     if request.method == 'POST':
