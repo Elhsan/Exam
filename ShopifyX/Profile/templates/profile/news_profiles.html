@@ -10,7 +10,7 @@
         <div class="interests">{{ el.interests }}</div>
         <hr>
         <a href="{% url 'profile_detail' el.id  %}" class="btn btn-warning " >посмотреть</a>
-        {% if user.is_authenticated and user == profile.user or user_status.is_superuser %}
+          {% if user.is_authenticated and user == el.user or user_status.is_superuser %}
           <a href="{% url 'delete_detail' el.id  %}" class="btn btn-warning " >удалить</a>
           <a href="{% url 'profiles' %}" class="btn btn-warning " >изменить</a>
         {% endif %}

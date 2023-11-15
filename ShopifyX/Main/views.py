@@ -6,14 +6,18 @@ from django.http import JsonResponse
 from Profile.models import UserProfile
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
+from Profile.models import *
+
+
 def home_page(request):
+    profile = UserProfile.objects.all()
     user_status = {
         'is_active': request.user.is_active,
         'is_staff': request.user.is_staff,
         'is_superuser': request.user.is_superuser,
         'username': request.user.username,
     }
-    return render(request, 'main/home.html', {'user_status': user_status})
+    return render(request, 'main/home.html', {'user_status': user_status, 'profiles': profile})
 
 
 def registration(request):

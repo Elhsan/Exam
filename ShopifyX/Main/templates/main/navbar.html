@@ -32,7 +32,15 @@
       <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
     </div>
     <div id="nav-footer-content">
-      <Lorem>ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Lorem>
+      {% for profile in profiles %}
+      {% if profile.user == user %}
+          {% if profile.interests %}
+              <p>User has interests: {{ profile.interests }}</p>
+          {% else %}
+              <p>User has no specified interests.</p>
+          {% endif %}
+      {% endif %}
+  {% endfor %}
     </div>
   </div>
 </div>
