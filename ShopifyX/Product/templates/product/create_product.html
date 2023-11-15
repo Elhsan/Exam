@@ -1,15 +1,14 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-  <div class="create-product-container">
-    <h2>Create a New Product</h2>
-
-    <form method="post" enctype="multipart/form-data" class="create-product-form">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Create Product</button>
-    </form>
-  </div>
+<div class="create-product-container">
+  <h2>Create a New Product</h2>
+  <form method="post" enctype="multipart/form-data" class="create-product-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Product</button>
+  </form>
+</div>
 
 <style>
     .create-product-container {

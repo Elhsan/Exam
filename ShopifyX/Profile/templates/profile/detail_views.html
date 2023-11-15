@@ -8,9 +8,11 @@
         <div class="name">{{ profile.first_name }}</div>
         <div class="birth-date">{{ profile.birth_date }}</div>
         <div class="interests">{{ profile.interests }}</div>
-        <hr>
-        <a href="{% url 'delete_detail' profile.id  %}" class="btn btn-warning " >удалить</a>
-        <a href="{% url 'profiles' %}" class="btn btn-warning " >изменить</a>
+        {% if user.is_authenticated and user == profile.user or user_status.is_superuser %}
+          <hr>
+          <a href="{% url 'delete_detail' profile.id  %}" class="btn btn-warning " >удалить</a>
+          <a href="{% url 'profiles' %}" class="btn btn-warning " >изменить</a>
+        {% endif %}
       </div>
   </div>
 

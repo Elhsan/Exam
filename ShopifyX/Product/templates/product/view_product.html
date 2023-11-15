@@ -1,14 +1,53 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-<div style="text-align: center; margin:0 auto;">
-  <h2>{{ product.name }}</h2>
-  <p>{{ product.description }}</p>
-  <p>{{ product.reviews }}</p>
+<div class="product-cards-container">
 
-  {% if user.is_authenticated and user == product.user %}
-    <a href="{% url 'edit_product' product_id=product.id %}">Edit</a>
-    <a href="{% url 'delete_product' product_id=product.id %}">Delete</a>
-  {% endif %}
+    <div class="product-card">
+      <h2>{{ product.name }}</h2>
+      <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+      <p class="description">description: {{ product.description}}</p>
+      <p>reviews: {{ product.reviews }}</p>
+      <a class="btn btn-success "  href="{% url 'view_product' product_id=product.id %}">Посмотреть</a>
+
+      {% if user.is_authenticated and user == product.user or user_status.is_superuser %}
+        <a class="btn btn-warning"  href="{% url 'edit_product' product_id=product.id %}">Edit</a>
+        <a class="btn btn-warning"  href="{% url 'delete_product' product_id=product.id %}">Delete</a>
+      {% endif %}
+    </div>
+
 </div>
+
+<style>
+  .product-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    
+  }
+  img {
+    border: solid 3px black;
+    
+  }
+  .product-card {
+    width: 30%; 
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ddd; 
+    box-sizing: border-box;
+    text-align: center; 
+  }
+
+  .product-card img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd; 
+  }
+
+  .description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+</style>
 {% endblock %}
