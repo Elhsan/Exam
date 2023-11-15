@@ -17,7 +17,3 @@ class UserForm(UserCreationForm):
 
 
 
-class ProductForm(forms.ModelForm):
-    class Meta:
-        model = Product
-        fields = ['name', 'image', 'description', 'reviews']

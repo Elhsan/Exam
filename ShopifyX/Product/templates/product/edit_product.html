@@ -1,0 +1,52 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="create-product-container">
+  <h2>Edit Product</h2>
+  <form method="post" enctype="multipart/form-data"class="create-product-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Changes</button>
+  </form>
+</div>
+  <style>
+    .create-product-container {
+        text-align: center;
+        margin: 20px auto;
+        max-width: 400px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+      }
+      
+      .create-product-form {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .create-product-form label {
+        margin-bottom: 8px;
+      }
+      
+      .create-product-form input,
+      .create-product-form textarea {
+        padding: 8px;
+        margin-bottom: 16px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      
+      .create-product-form button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      
+      .create-product-form button:hover {
+        background-color: #45a049;
+      }
+</style>
+{% endblock %}
