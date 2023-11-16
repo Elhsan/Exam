@@ -12,8 +12,8 @@
     <div class="nav-button"><i class="fas fa-images"></i><span><a href="{% url 'product' %}">Products</a></span></div>
     <div class="nav-button"><i class="fas fa-thumbtack"></i><span><a href="{% url 'create_product' %}">Create product</a></span></div>
     <hr/>
-    <div class="nav-button"><i class="fas fa-heart"></i><span><a href="">Following</a></span></div>
-    <div class="nav-button"><i class="fas fa-chart-line"></i><span><a href="">Trending</a></span></div>
+    <div class="nav-button"><i class="fas fa-heart"></i><span><a href="{% url 'profile' %}">profile</a></span></div>
+    <div class="nav-button"><i class="fas fa-chart-line"></i><span><a href="{% url 'profiles' %}">Update profile</a></span></div>
     <div class="nav-button"><i class="fas fa-fire"></i><span><a href="">Challenges</a></span></div>
     <div class="nav-button"><i class="fas fa-magic"></i><span><a href="{% url 'logout' %}">logout</a></span></div>
     <hr/>
@@ -44,8 +44,8 @@
     </div>
   </div>
 </div>
-
 <style>
+
   :root {
     --background: #9c88ff;
     --navbar-width: 256px;
