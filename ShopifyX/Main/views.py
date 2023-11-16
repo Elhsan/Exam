@@ -13,13 +13,17 @@ def home_page(request):
     profile = UserProfile.objects.all()
     user_profile = UserProfile.objects.get(user=request.user) if request.user.is_authenticated else None
 
+    user_group = None
+    if request.user.groups.exists():
+        user_group = request.user.groups.first().name
+        
     user_status = {
         'is_active': request.user.is_active,
         'is_staff': request.user.is_staff,
         'is_superuser': request.user.is_superuser,
         'username': request.user.username,
     }
-    return render(request, 'main/home.html', {'user_status': user_status, 'profiles': profile, 'user_profile': user_profile})
+    return render(request, 'main/home.html', {'user_status': user_status, 'profiles': profile, 'user_profile': user_profile, 'user_group': user_group})
 
 
 def registration(request):
