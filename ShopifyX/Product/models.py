@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
-# Create your models here.
+from django.core.exceptions import ValidationError
+
 
 
 class Product(models.Model):
@@ -17,15 +18,21 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
-        # Open the image file
-        img = Image.open(self.image.path)
+        # Check if 'image' attribute is not None
+        if self.image:
+            try:
+                # Open the image file
+                img = Image.open(self.image.path)
 
-        # Set the desired width and height
-        desired_width = 600
-        desired_height = 600
+                # Set the desired width and height
+                desired_width = 600
+                desired_height = 600
 
-        # Resize the image if it exceeds the desired dimensions
-        if img.width > desired_width or img.height > desired_height:
-            output_size = (desired_width, desired_height)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
+                # Resize the image if it exceeds the desired dimensions
+                if img.width > desired_width or img.height > desired_height:
+                    output_size = (desired_width, desired_height)
+                    img.thumbnail(output_size)
+                    img.save(self.image.path)
+
+            except (FileNotFoundError, ValidationError) as e:
+                print(f"Error processing image: {e}")

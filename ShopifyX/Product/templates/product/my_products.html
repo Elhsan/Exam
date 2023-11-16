@@ -8,7 +8,11 @@
             {% for product in user_products %}
                 <div class="product-card">
                     <h2>{{ product.name }}</h2>
+                    {% if product.image %}
                     <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+                  {% else %}
+                    <p>No image available</p>
+                  {% endif %}
                     <p class="description">Description: {{ product.description }}</p>
                     <p>Reviews: {{ product.reviews }}</p>
                     <a class="btn btn-success" href="{% url 'view_product' product_id=product.id %}">Посмотреть</a>

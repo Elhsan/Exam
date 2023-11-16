@@ -18,9 +18,19 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings 
+
+from rest_framework import routers
+from Product.api_views import *
+
+router = routers.DefaultRouter()
+router.register('Product', ProductViewSet)
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Main.urls')),
     path('profile/', include('Profile.urls')),
     path('product/', include('Product.urls')),
+    path('api/', include(router.urls)),
+    path('api-rest/', include('rest_framework.urls', namespace='rest_framework'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

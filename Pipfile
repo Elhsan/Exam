@@ -8,6 +8,7 @@ django = "*"
 django-bootstrap5 = "*"
 django-allauth = "*"
 pillow = "*"
+djangorestframework = "*"
 
 [dev-packages]
 

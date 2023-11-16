@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'Main',
     'Profile',
     'Product',
-
     'django_bootstrap5',
+    'rest_framework',
 
     'allauth',
     'allauth.account',
@@ -54,6 +54,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'ShopifyX.middlewares.UserVisitMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',

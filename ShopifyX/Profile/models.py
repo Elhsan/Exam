@@ -10,5 +10,6 @@ class UserProfile(models.Model):
     birth_date = models.DateField(null=True, blank=True)
     interests = models.TextField(max_length=100)
 
+
     def __str__(self):
         return self.user.username
