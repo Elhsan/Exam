@@ -18,14 +18,14 @@
   </section>
 
   <h2 style="text-align: center; padding: 35px;">Featured Products</h2>
-  <section class="featured-products">
-      <div class="product">
+  <section class="featured-products ">
+      <div class="product Link">
         <img src="https://avatars.mds.yandex.net/i?id=3af7adbc8e7182d4f8c20893a03a283d54e3d539-10385249-images-thumbs&n=13" width="100%" height="300px">
         <hr>  
         <h3>Stylish Watch</h3>
         <p class="price">$99.99</p>
       </div>
-      <div class="product">
+      <div class="product Link">
         <img src="https://storage.myseldon.com/news-pict-b7/B7D82BA6B59F70DFD072EDEE5F50EF1C" width="100%" height="300px">
         <hr>    
         <h3>Smartphone X</h3>
@@ -33,6 +33,16 @@
       </div>
   </section>
 </div>
+<div class="vopros">
+
+  <a class="Link" href="#">
+    
+  </a>
+</div>
+{% if user_profile %}
+
+<p style="text-align: center;">Посешения на сайте: {{ user_profile.visit_count }}</p>
+{% endif %}
 
 <footer>
   <div class="footer-container">
@@ -69,11 +79,84 @@
 
 body {
 font-family: 'Arial', sans-serif;
-margin: 0;
+margin: 0 auto;
 padding: 0;
 
-
 }
+
+
+
+.Link {
+  text-align: center;
+  filter: drop-shadow(0 1em 1em rgba(#000, .16));
+  font-size: 1rem;
+  max-width: 30em;
+  padding: 2em 2.4em;
+  position: relative;
+  transform: translateZ(0);
+  display: inline-block; /* Make it inline-block to center it */
+  background: #fff; /* Background color for the card */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for the card */
+}
+
+.Link::before,
+.Link::after {
+  background-color: #fff;
+  border-radius: 3px;
+  content: ' ';
+  display: block;
+  position: absolute;
+  transform-origin: right;
+  transition: transform 500ms;
+  width: 100%; height: 100%;
+  top: 0; left: 0;
+  z-index: -1;
+}
+
+.Link::after {
+  background-color: #444;
+  transform: scaleX(0);
+  transition-duration: 450ms;
+}
+
+.Link-title {
+  background-image:
+    linear-gradient(0deg, #ddd, #000),
+    linear-gradient(0deg, #fff, #fff);
+  background-size: 0 2px, 0 100%;
+  background-position: 8px calc(1em + 8px), 0 0;
+  background-repeat: no-repeat;
+  box-decoration-break: clone;
+  display: inline;
+  font-size: 30px;
+  font-weight: 300;
+  padding: 6px 8px;
+  margin-left: -8px;
+  pointer-events: none;
+  line-height: 1.75; 
+  text-shadow: 1px 1px 0 #fff, -1px 1px 0 #fff;
+  transition: background ease-out 500ms;
+}
+
+.Link:hover > .Link-title {
+  background-size: calc(100% - 16px) 2px, 100% 100%;
+  transition-duration: 200ms;
+  background-color: green;
+}
+
+.Link:hover::before {
+  transform: scaleX(0);
+  transition-duration: 450ms;
+  transition-timing-function: ease-in-out;
+}
+
+.Link:hover::after {
+  transform:  scaleX(1);
+  transition-duration: 700ms;
+  transition-timing-function: ease-in-out;
+  transform-origin: left;
+}
+
 
 
 header {
@@ -115,7 +198,6 @@ margin: 20px auto;
 }
 
 .hero {
-background-color: #f2f2f2;
 padding: 20px;
 text-align: center;
 }

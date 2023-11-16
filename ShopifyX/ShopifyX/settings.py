@@ -149,7 +149,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-
+AUTH_PROFILE_MODULE = 'Profile.UserProfile'
 LOGIN_REDIRECT_URL = 'home_page'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'

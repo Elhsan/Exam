@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-# Create your views here.
+from django.contrib import messages
 from .forms import *
 from .models import *
 from django.contrib.auth.decorators import login_required
@@ -17,7 +17,8 @@ def profile(request):
         form = UserProfileForm(request.POST, instance=user_profile)
         if form.is_valid():
             form.save()
-            return redirect('profile')
+            messages.success(request, 'Your profile has been updated!')
+            return redirect('profiles')
     else:
         form = UserProfileForm(instance=user_profile)
         user_status = {
