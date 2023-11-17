@@ -44,19 +44,18 @@
         </div>
       </main>
     {% else %}
-      <div class="logged-out-navbar">
+      {% comment %} <div class="logged-out-navbar">
 
         <div class="log_reg">
 
           <a href="{% url 'register' %}" class="register">Sign up</a>
           <a href="{% url 'login' %}" class="login">Sign in</a>
         </div>
-      </div>
-      <main id="logged-out-menu">
-        {% bootstrap_messages %}
-        {% block auth_content %}
-        {% endblock %}
-      </main>
+      </div> {% endcomment %}
+      {% bootstrap_messages %}
+      {% block auth_content %}
+      {% endblock %}
+     
     {% endif %}
 
     {% bootstrap_javascript %}

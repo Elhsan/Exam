@@ -37,22 +37,42 @@ def profile(request):
 def news_profile(request):
     profiles = UserProfile.objects.all()
     user_status = {
-        'is_active': request.user.is_active,
-        'is_staff': request.user.is_staff,
         'is_superuser': request.user.is_superuser,
         'username': request.user.username,
     }
+    user_group = None
+    if request.user.groups.exists():
+        user_group = request.user.groups.first().name
     context = {
         'profiles': profiles,
         'user_status': user_status,
+        'user_group': user_group
     }
     return render (request, 'profile/news_profiles.html', context)
+
 
 class ProfileDetailViews(DetailView):
     model = UserProfile
     template_name = 'profile/detail_views.html'
-    context_object_name = 'profile'
+    context_object_name = 'user_profile'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Ваш код для определения user_group
+        user_group = None
+        if self.request.user.groups.exists():
+            user_group = self.request.user.groups.first().name
+        
+
+        context['user_group'] = user_group
+
+        # Добавление профиля в контекст
+        context['profile'] = self.object
+
+        return context
+
+        
 class ProfileDeleteViews(DeleteView):
     model = UserProfile
     success_url = '/profile/news/'

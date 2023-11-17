@@ -11,352 +11,212 @@
 {% endblock %}
 
 {% block content %}
-{% if user_group %}
-<div class="main {% if user_group == 'Admin' %}admin{% elif user_group == 'Overlord' %}overlord{% elif user_group == 'Dragon' %}dragon{% elif user_group == 'King' %}king{% endif %}">
-        <section class="hero">
-            <p style="  font-size: 46px;">Welcome {{ user_group }} to ShopifyX</p>
 
-        </section>
 
-  <h2 style="text-align: center; padding: 35px;">Featured Products</h2>
-  <section class="featured-products ">
-      <div class="product Link">
-        <img src="https://avatars.mds.yandex.net/i?id=3af7adbc8e7182d4f8c20893a03a283d54e3d539-10385249-images-thumbs&n=13" width="100%" height="300px">
-        <hr>  
-        <h3>Stylish Watch</h3>
-        <p class="price">$99.99</p>
-      </div>
-      <div class="product Link">
-        <img src="https://storage.myseldon.com/news-pict-b7/B7D82BA6B59F70DFD072EDEE5F50EF1C" width="100%" height="300px">
-        <hr>    
-        <h3>Smartphone X</h3>
-        <p class="price">$499.99</p>
-      </div>
-  </section>
-</div>
-
-{% else %}
-<div class="main">
-  <section class="hero">
-      <h2>Welcome to ShopifyX</h2>
-      <p>Discover the latest trends in fashion and technology. Explore our wide range of products that cater to your needs.</p>
-  </section>
-
-  <h2 style="text-align: center; padding: 35px;">Featured Products</h2>
-  <section class="featured-products ">
-      <div class="product Link">
-        <img src="https://avatars.mds.yandex.net/i?id=3af7adbc8e7182d4f8c20893a03a283d54e3d539-10385249-images-thumbs&n=13" width="100%" height="300px">
-        <hr>  
-        <h3>Stylish Watch</h3>
-        <p class="price">$99.99</p>
-      </div>
-      <div class="product Link">
-        <img src="https://storage.myseldon.com/news-pict-b7/B7D82BA6B59F70DFD072EDEE5F50EF1C" width="100%" height="300px">
-        <hr>    
-        <h3>Smartphone X</h3>
-        <p class="price">$499.99</p>
-      </div>
-  </section>
-</div>
-{% endif %}
-<div style="text-align: center;">
-
-  {% if user_group %}
-      {% if user_group == "Overlord" %}
-          <p>Welcome, mighty Overlord!</p>
-      {% elif user_group == "King" %}
-          <p>Greetings, noble King!</p>
-      {% elif user_group == "Dragon" %}
-          <p>Hello, majestic Dragon!</p>
-      {% elif user_group == "Admin" %}
-          <p>Hello, sensible Admin!</p>
-      {% else %}
-          <p>Welcome, ordinary User!</p>
-      {% endif %}
-  {% else %}
-      <p>User group not defined</p>
-  {% endif %}
-  {% if user_profile %}
-  <p>Посешения на сайте: {{ user_profile.visit_count }}</p>
-  {% endif %}
-</div>
-
-<footer>
-  <div class="footer-container">
-      <div class="footer-section">
-          <h3>Explore</h3>
-          <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Products</a></li>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Contact</a></li>
-          </ul>
-      </div>
-      <div class="footer-section">
-          <h3>Categories</h3>
-          <ul>
-              <li><a href="#">Fashion</a></li>
-              <li><a href="#">Electronics</a></li>
-              <li><a href="#">Home & Living</a></li>
-          </ul>
-      </div>
-      <div class="footer-section">
-          <h3>Follow Us</h3>
-          <div class="footer-social">
-              <a href="#" target="_blank">Facebook</a>
-              <a href="#" target="_blank">Twitter</a>
-              <a href="#" target="_blank">Instagram</a>
-          </div>
-      </div>
+<main>
+  <div class="intro">
+    <h1>A Web Developer</h1>
+    <p>I am a web developer and I love to create websites.</p>
+    <button>Learn More</button>
   </div>
-  <p class="footer-disclaimer">© 2023 ShopifyX. All rights reserved.</p>
+  <div class="achievements">
+    <div class="work">
+      <i class="fas fa-atom"></i>
+      <p class="work-heading">Projects</p>
+      <p class="work-text">I have worked on many projects and I am very proud of them. I am a very good developer and I am always looking for new projects.</p>
+    </div>
+    <div class="work">
+      <i class="fas fa-skiing"></i>
+      <p class="work-heading">Skills</p>
+      <p class="work-text">I have a lot of skills and I am very good at them. I am very good at programming and I am always looking for new skills.</p>
+    </div>
+    <div class="work">
+      <i class="fas fa-ethernet"></i>
+      <p class="work-heading">Network</p>
+      <p class="work-text">I have a lot of network skills and I am very good at them. I am very good at networking and I am always looking for new network skills.</p>
+    </div>
+  </div>
+  <div class="about-me">
+    <div class="about-me-text">
+      <h2>About Me</h2>
+      <p>I am a web developer and I love to create websites. I am a very good developer and I am always looking for new projects. I am a very good developer and I am always looking for new projects.</p>
+    </div>
+    <img src="https://images.unsplash.com/photo-1596495578065-6e0763fa1178?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80" alt="me">
+  </div>
+</main>
+<footer class="footer">
+  <div class="copy">&copy; 2022 Developer</div>
+  <div class="bottom-links">
+    <div class="links">
+      <span>More Info</span>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="links">
+      <span>Social Links</span>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
 </footer>
 <style>
 /* Ваш файл стилей (styles.css) */
+@import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
 
-.hero {
-  color: black; /* Черный цвет по умолчанию */
-}
-
-.admin .hero {
-  color: red;
-
-  text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
-  font-size: 46px;
-}
-
-.overlord .hero {
-  color: blue;
-   text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
-  font-size: 46px;
-}
-
-.dragon .hero {
-  color: purple;
-   text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
-  font-size: 46px;
-}
-.king .hero {
-  color: yellow;
-  text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
-  font-size: 46px;
-}
 body {
-font-family: 'Arial', sans-serif;
-margin: 0 auto;
-padding: 0;
-
-}
-
-
-
-.Link {
-  text-align: center;
-  filter: drop-shadow(0 1em 1em rgba(#000, .16));
-  font-size: 1rem;
-  max-width: 30em;
-  padding: 2em 2.4em;
-  position: relative;
-  transform: translateZ(0);
-  display: inline-block; /* Make it inline-block to center it */
-  background: #fff; /* Background color for the card */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for the card */
-}
-
-.Link::before,
-.Link::after {
   background-color: #fff;
-  border-radius: 3px;
-  content: ' ';
-  display: block;
-  position: absolute;
-  transform-origin: right;
-  transition: transform 500ms;
-  width: 100%; height: 100%;
-  top: 0; left: 0;
-  z-index: -1;
+  margin: 0;
+  box-sizing: border-box;
 }
+/* CSS for header */
 
-.Link::after {
-  background-color: #444;
-  transform: scaleX(0);
-  transition-duration: 450ms;
-}
-
-.Link-title {
-  background-image:
-    linear-gradient(0deg, #ddd, #000),
-    linear-gradient(0deg, #fff, #fff);
-  background-size: 0 2px, 0 100%;
-  background-position: 8px calc(1em + 8px), 0 0;
+/* CSS for main section */
+.intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 520px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url("https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1031&q=80");
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  box-decoration-break: clone;
-  display: inline;
+}
+
+.intro h1 {
+  font-family: sans-serif;
+  font-size: 60px;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.intro p {
+  font-size: 20px;
+  color: #d1d1d1;
+  text-transform: uppercase;
+  margin: 20px 0;
+}
+
+.intro button {
+  background-color: #5edaf0;
+  color: #000;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4)
+}
+
+.achievements {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 40px 80px;
+}
+
+.achievements .work {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+}
+
+.achievements .work i {
+  width: fit-content;
+  font-size: 50px;
+  color: #333333;
+  border-radius: 50%;
+  border: 2px solid #333333;
+  padding: 12px;
+}
+
+.achievements .work .work-heading {
+  font-size: 20px;
+  color: #333333;
+  text-transform: uppercase;
+  margin: 10px 0;
+}
+
+.achievements .work .work-text {
+  font-size: 15px;
+  color: #585858;
+  margin: 10px 0;
+}
+
+.about-me {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 80px;
+  border-top: 2px solid #eeeeee;
+}
+
+.about-me img {
+  width: 500px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.about-me-text h2 {
   font-size: 30px;
-  font-weight: 300;
-  padding: 6px 8px;
-  margin-left: -8px;
-  pointer-events: none;
-  line-height: 1.75; 
-  text-shadow: 1px 1px 0 #fff, -1px 1px 0 #fff;
-  transition: background ease-out 500ms;
+  color: #333333;
+  text-transform: uppercase;
+  margin: 0;
 }
 
-.Link:hover > .Link-title {
-  background-size: calc(100% - 16px) 2px, 100% 100%;
-  transition-duration: 200ms;
-  background-color: green;
+.about-me-text p {
+  font-size: 15px;
+  color: #585858;
+  margin: 10px 0;
+}
+/* CSS for footer */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #302f49;
+  padding: 40px 80px;
 }
 
-.Link:hover::before {
-  transform: scaleX(0);
-  transition-duration: 450ms;
-  transition-timing-function: ease-in-out;
+.footer .copy {
+  color: #fff;
 }
 
-.Link:hover::after {
-  transform:  scaleX(1);
-  transition-duration: 700ms;
-  transition-timing-function: ease-in-out;
-  transform-origin: left;
+.bottom-links {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 40px 0;
 }
 
-
-
-header {
-background-color: #333;
-color: white;
-padding: 10px 0;
-text-align: center;
-display: flex;
-justify-content: space-between;
+.bottom-links .links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
 }
 
-.logo h1 {
-margin: 0;
+.bottom-links .links span {
+  font-size: 20px;
+  color: #fff;
+  text-transform: uppercase;
+  margin: 10px 0;
 }
 
-nav ul {
-list-style: none;
-padding: 0;
-display: flex;
+.bottom-links .links a {
+  text-decoration: none;
+  color: #a1a1a1;
+  padding: 10px 20px;
 }
-
-nav ul li {
-margin-right: 20px;
-}
-
-nav a {
-text-decoration: none;
-color: white;
-transition: color 0.3s ease-in-out;
-}
-
-nav a:hover {
-color: #ffd700; /* Желтый цвет при наведении */
-}
-
-.main {
-max-width: 800px;
-margin: 20px auto;
-}
-
-.hero {
-padding: 20px;
-text-align: center;
-}
-
-.featured-products {
-color: #000;
-text-align: center;
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-}
-
-.product {
-width: 48%;
-margin-bottom: 20px;
-border: 1px solid #ccc;
-padding: 10px;
-transition: transform 0.3s ease-in-out;
-}
-
-.product:hover {
-color: #ccc;
-transform: scale(1.05);
-transition: .5s;
-background-color: #181d26;
-}
-
-.price {
-font-weight: bold;
-}
-
-footer {
-background-color: #333;
-color: white;
-text-align: center;
-padding: 20px 0;
-}
-
-.footer-container {
-max-width: 1200px;
-margin: 0 auto;
-display: flex;
-justify-content: space-between;
-align-items: center;
-}
-
-.footer-section {
-flex: 1;
-margin: 0 20px;
-}
-
-.footer-section h3 {
-color: #ffd700; /* Желтый цвет для заголовков */
-}
-
-.footer-section ul {
-list-style: none;
-padding: 0;
-}
-
-.footer-section ul li {
-margin-bottom: 10px;
-}
-
-.footer-section a {
-text-decoration: none;
-color: #bbb;
-transition: color 0.3s ease-in-out;
-}
-
-.footer-section a:hover {
-color: #ffd700; /* Желтый цвет при наведении */
-}
-
-.footer-social {
-margin-top: 20px;
-}
-
-.footer-social a {
-display: inline-block;
-margin-right: 15px;
-color: white;
-font-size: 18px;
-transition: color 0.3s ease-in-out;
-}
-
-.footer-social a:hover {
-color: #ffd700; /* Желтый цвет при наведении */
-}
-
-.footer-disclaimer {
-margin-top: 20px;
-font-size: 14px;
-color: #bbb;
-}
-
 </style>
 {% endblock %}

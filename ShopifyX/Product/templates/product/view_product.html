@@ -10,7 +10,7 @@
       <p>reviews: {{ product.reviews }}</p>
       <a class="btn btn-success "  href="{% url 'view_product' product_id=product.id %}">Посмотреть</a>
 
-      {% if user.is_authenticated and user == product.user or user_status.is_superuser %}
+      {% if user.is_authenticated and user == product.user or user_status.is_superuser or user_group == 'Admin' %}
         <a class="btn btn-warning"  href="{% url 'edit_product' product_id=product.id %}">Edit</a>
         <a class="btn btn-warning"  href="{% url 'delete_product' product_id=product.id %}">Delete</a>
       {% endif %}
