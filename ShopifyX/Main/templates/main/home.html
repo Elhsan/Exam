@@ -15,9 +15,9 @@
 
 <main>
   <div class="intro">
-    <h1>A Web Developer</h1>
+    <h1>A ShopifyX</h1>
     <p>I am a web developer and I love to create websites.</p>
-    <button>Learn More</button>
+    <button> <a href="{% url 'home_page' %}">Learn More</a></button>
   </div>
   <div class="achievements">
     <div class="work">
@@ -91,7 +91,6 @@ body {
   font-size: 60px;
   color: #fff;
   font-weight: bold;
-  text-transform: uppercase;
   margin: 0;
 }
 
@@ -152,11 +151,13 @@ body {
 }
 
 .about-me {
+  
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 40px 80px;
   border-top: 2px solid #eeeeee;
+  text-align: center;
 }
 
 .about-me img {
@@ -166,11 +167,21 @@ body {
   border-radius: 10px;
 }
 
+.about-me-text {
+  width: 500px;
+  max-width: 100%;
+  height: auto;
+  text-align: left;
+}
+
 .about-me-text h2 {
+
   font-size: 30px;
   color: #333333;
   text-transform: uppercase;
   margin: 0;
+  text-align: center;
+
 }
 
 .about-me-text p {
@@ -212,7 +223,14 @@ body {
   text-transform: uppercase;
   margin: 10px 0;
 }
-
+a{
+  text-decoration: none;
+  color: #fff;
+  padding: 10px 20px;
+}
+a:hover{
+  color: #fff;
+}
 .bottom-links .links a {
   text-decoration: none;
   color: #a1a1a1;

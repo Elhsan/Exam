@@ -26,12 +26,12 @@ class Product(models.Model):
 
                 # Set the desired width and height
                 desired_width = 600
-                desired_height = 600
+                desired_height = 400
 
                 # Resize the image if it exceeds the desired dimensions
                 if img.width > desired_width or img.height > desired_height:
                     output_size = (desired_width, desired_height)
-                    img.thumbnail(output_size)
+                    img = img.resize(output_size)
                     img.save(self.image.path)
 
             except (FileNotFoundError, ValidationError) as e:

@@ -17,7 +17,7 @@
     <div class="nav-button"><i class="fas fa-fire"></i><span><a href="">Challenges</a></span></div>
     <div class="nav-button"><i class="fas fa-magic"></i><span><a href="{% url 'logout' %}">logout</a></span></div>
     <hr/>
-    <div class="nav-button"><i class="fas fa-gem"></i><span>Shopify Pro</span></div>
+    <div class="nav-button"><i class="fas fa-gem"></i><span><a href="{% url 'donate' %}">Shopify Pro</a></span></div>
     <div id="nav-content-highlight"></div>
   </div>
   <input id="nav-footer-toggle" type="checkbox"/>
@@ -58,7 +58,7 @@
   
   html, body {
     margin: 0;
-    background: var(--background);
+
   }
   
   #nav-toggle:checked ~ #nav-header {
@@ -372,8 +372,12 @@
   #nav-footer-subtitle {
     color: var(--navbar-light-secondary);
     font-size: 0.6rem;
+    padding-left: 40px;
+    padding-bottom: 10px;
+    
   }
-  
+  p{
+  }
   #nav-footer-toggle:checked + #nav-footer {
     height: 30%;
     min-height: 54px;
