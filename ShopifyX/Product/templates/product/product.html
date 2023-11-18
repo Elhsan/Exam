@@ -12,6 +12,9 @@
         {% endif %}
         <p class="description">description: {{ product.description}}</p>
         <p>reviews: {{ product.reviews }}</p>
+        {% if not user == product.user %}
+        <a class="btn btn-success" href="{% url 'add_to_wishlist' product_id=product.id %}">Buy</a>
+        {% endif %}
         <a class="btn btn-success "  href="{% url 'view_product' product_id=product.id %}">Посмотреть</a>
 
         {% if user.is_authenticated and user == product.user or user_status.is_superuser or user_group == 'Admin' %}

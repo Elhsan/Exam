@@ -8,6 +8,38 @@ from Profile.models import *
 
 
 # Create your views here.
+def wishlist(request):
+    user_group = None
+    if request.user.groups.exists():
+        user_group = request.user.groups.first().name
+    user_status = {
+        'username': request.user.username,
+    }
+    wishlist_items = Wishlist.objects.filter(user=request.user)
+    return render(request, 'product/wishlist.html', {'wishlist_items': wishlist_items, 'user_status': user_status, 'user_group': user_group})
+
+def add_to_wishlist(request, product_id):
+    product = Product.objects.get(id=product_id)
+    wishlist_item, created = Wishlist.objects.get_or_create(user=request.user, product=product)
+
+    if not created:
+        wishlist_item.quantity += 1
+        wishlist_item.save()
+
+    messages.success(request, f"{product.name} added to your wishlist!")
+    return redirect('wishlist')
+
+def remove_from_wishlist(request, wishlist_id):
+    wishlist_item = Wishlist.objects.get(id=wishlist_id)
+
+    if wishlist_item.quantity > 1:
+        wishlist_item.quantity -= 1
+        wishlist_item.save()
+    else:
+        wishlist_item.delete()
+
+    messages.success(request, f"{wishlist_item.product.name} removed from your wishlist!")
+    return redirect('wishlist')
 
 def product(request):
     user_group = None

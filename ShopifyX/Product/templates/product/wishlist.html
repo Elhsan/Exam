@@ -1,0 +1,111 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<h1 class="wishlist-heading">Your Wishlist</h1>
+{% for item in wishlist_items %}
+    <div class="wishlist-row">
+    <div class="table-cell">{{ item.product.name }}</div>
+    <div class="table-cell">
+        <img class="product-image" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+    </div>
+    <div class="table-cell description">{{ item.product.description }}</div>
+    <div class="table-cell quantity-container">
+        <button class="quantity-btn" onclick="adjustQuantity({{ item.id }}, -1)">-</button>
+        <p class="quantity" id="quantity-{{ item.id }}">{{ item.quantity }}</p>
+        <button class="quantity-btn" onclick="adjustQuantity({{ item.id }}, 1)">+</button>
+    </div>
+    <div class="table-cell">
+        <a class="remove-btn" href="{% url 'remove_from_wishlist' item.id %}">Remove</a>
+    </div>
+</div>
+{% endfor %}
+  
+  <style>
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+      }
+  
+      .wishlist-table {
+        display: table;
+        width: 80%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+  
+      .wishlist-header,
+      .wishlist-row {
+        display: table-row;
+      }
+  
+      .table-cell {
+        display: table-cell;
+        padding: 10px;
+        box-sizing: border-box;
+        text-align: center;
+      }
+  
+      .wishlist-heading {
+        text-align: center;
+      }
+  
+      .product-image {
+        width: 100%;
+        max-width: 100px;
+        height: auto;
+      }
+  
+      .description {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+  
+      .quantity-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+  
+      .quantity-btn {
+        font-size: 1.2em;
+        padding: 5px 10px;
+        margin: 0 5px;
+        cursor: pointer;
+      }
+  
+      .quantity {
+        font-size: 1.2em;
+        margin: 0 10px;
+      }
+  
+      .remove-btn {
+        display: inline-block;
+        padding: 5px 10px;
+        background-color: #dc3545;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+  </style>
+
+  <script>
+    function adjustQuantity(itemId, change) {
+      var quantityElement = document.getElementById('quantity-' + itemId);
+      var currentQuantity = parseInt(quantityElement.innerText);
+  
+      // Ensure the quantity doesn't go below 1
+      var newQuantity = Math.max(1, currentQuantity + change);
+  
+      // Update the quantity element
+      quantityElement.innerText = newQuantity;
+  
+      // You can implement logic here to send an AJAX request to update the quantity on the server
+      // For simplicity, this example just logs the new quantity to the console
+      console.log('New Quantity:', newQuantity);
+    }
+  </script>
+{% endblock %}

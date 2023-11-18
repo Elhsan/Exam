@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 
 
 class Product(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)  # Set the default user ID
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='img/')
     description = models.TextField()
@@ -36,3 +36,11 @@ class Product(models.Model):
 
             except (FileNotFoundError, ValidationError) as e:
                 print(f"Error processing image: {e}")
+
+class Wishlist(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey('Product', on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.user.username}'s Wishlist"
