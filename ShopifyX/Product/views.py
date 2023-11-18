@@ -20,7 +20,6 @@ def product(request):
     return render(request, 'product/product.html', {'products': products, 'user_status': user_status, 'user_group': user_group})
 
 def edit_product(request, product_id):
-
     product = get_object_or_404(Product, id=product_id)
     profile = UserProfile.objects.all()
     user_status = {
@@ -28,7 +27,7 @@ def edit_product(request, product_id):
     }
 
     # Проверяем, является ли текущий пользователь создателем товара
-    if request.user != product.user and not request.user.is_superuser:
+    if request.user != product.user and not request.user.is_superuser and request.user.groups.first().name != 'Admin':
         # Если не является, перенаправляем на страницу просмотра товара
         return redirect('product')
 
@@ -47,8 +46,8 @@ def view_product(request, product_id):
     if request.user.groups.exists():
         user_group = request.user.groups.first().name
     product = get_object_or_404(Product, id=product_id)
-    return render(request, 'product/view_product.html', {'product': product,'user_status': {'username': request.user.username}, 'user_group': request.user.groups.first().name})
-
+    creator_profile = UserProfile.objects.get(user=product.user)
+    return render(request, 'product/view_product.html', {'product': product, 'user_status': {'username': request.user.username}, 'creator_profile': creator_profile, 'user_group': user_group})
 def delete_product(request, product_id):
     product = get_object_or_404(Product, id=product_id)
 

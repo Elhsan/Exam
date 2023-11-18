@@ -17,7 +17,7 @@
   <div class="intro">
     <h1>A ShopifyX</h1>
     <p>I am a web developer and I love to create websites.</p>
-    <button> <a href="{% url 'home_page' %}">Learn More</a></button>
+    <a href="{% url 'about' %}"><button>Learn More</button></a>
   </div>
   <div class="achievements">
     <div class="work">
@@ -207,6 +207,7 @@ body {
   justify-content: space-around;
   align-items: center;
   padding: 40px 0;
+  color: #fff;
 }
 
 .bottom-links .links {
@@ -223,14 +224,7 @@ body {
   text-transform: uppercase;
   margin: 10px 0;
 }
-a{
-  text-decoration: none;
-  color: #fff;
-  padding: 10px 20px;
-}
-a:hover{
-  color: #fff;
-}
+
 .bottom-links .links a {
   text-decoration: none;
   color: #a1a1a1;

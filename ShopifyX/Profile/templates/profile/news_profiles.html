@@ -1,22 +1,27 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+
 <div class="profiles-container">
-    <h2>Profiles</h2>
-    {% for el in profiles %}
-      <div class="profile" style="background-color: {{ el.color }}">
-        <div class="name">{{ el.first_name }}</div>
-        <div class="birth-date">{{ el.birth_date }}</div>
-        <div class="interests">{{ el.interests }}</div>
-        <hr>
-        <a href="{% url 'profile_detail' el.id  %}" class="btn btn-warning " >посмотреть</a>
-          {% if user.is_authenticated and user == el.user or user_status.is_superuser or user_group == 'Admin' %}
-          <a href="{% url 'delete_detail' el.id  %}" class="btn btn-warning " >удалить</a>
-          <a href="{% url 'profiles' %}" class="btn btn-warning " >изменить</a>
-        {% endif %}
+  <h2>Your Profile(s)</h2>
+  
+  {% if user_profile %}
+      <div class="profile" style="background-color: {{ user_profile.color }}">
+          <div class="name">{{ user_profile.first_name }}</div>
+          <div class="birth-date">{{ user_profile.birth_date }}</div>
+          <div class="interests">{{ user_profile.interests }}</div>
+          <hr>
+          {% if user.is_authenticated and user == user_profile.user or user_status.is_superuser or user_group == 'Admin' %}
+              <a href="{% url 'delete_detail' user_profile.id %}" class="btn btn-warning">Delete</a>
+              <a href="{% url 'profiles' %}" class="btn btn-warning">Edit</a>
+          {% endif %}
       </div>
-    {% endfor %}
-  </div>
+  {% else %}
+      <p>No profile found.</p>
+      <a href="{% url 'profiles' %}" class="btn btn-primary">Create Profile</a>
+  {% endif %}
+</div>
+
 
   <style>
     .profiles-container {
@@ -58,7 +63,5 @@
       .profile:nth-child(even) {
         background-color: #e6e6e6; /* Темный цвет для четных карточек */
       }
-      
-      
   </style>
 {% endblock %}

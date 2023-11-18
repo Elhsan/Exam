@@ -9,8 +9,6 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def profile(request):
-
-
     user_profile, created = UserProfile.objects.get_or_create(user=request.user)
 
     if request.method == 'POST':
@@ -18,7 +16,7 @@ def profile(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Your profile has been updated!')
-            return redirect('profiles')
+            return redirect('profile')
     else:
         form = UserProfileForm(instance=user_profile)
         user_status = {
@@ -34,23 +32,27 @@ def profile(request):
 
     return render(request, 'profile/profile.html', context)
 
+@login_required
 def news_profile(request):
-    profiles = UserProfile.objects.all()
-    user_status = {
-        'is_superuser': request.user.is_superuser,
-        'username': request.user.username,
-    }
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+    except UserProfile.DoesNotExist:
+        user_profile = None
+
     user_group = None
     if request.user.groups.exists():
         user_group = request.user.groups.first().name
+
+    user_status = {
+        'username': request.user.username,
+    }
     context = {
-        'profiles': profiles,
+        'user_profile': user_profile,
         'user_status': user_status,
         'user_group': user_group
     }
-    return render (request, 'profile/news_profiles.html', context)
-
-
+    return render(request, 'profile/news_profiles.html', context)
+    
 class ProfileDetailViews(DetailView):
     model = UserProfile
     template_name = 'profile/detail_views.html'
