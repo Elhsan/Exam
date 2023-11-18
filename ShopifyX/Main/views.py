@@ -9,38 +9,64 @@ from django.shortcuts import render, get_object_or_404, redirect
 from Profile.models import *
 from django.contrib.auth.models import Group
 
+@login_required
 def donate_overlord(request):
-   
+    current_group = get_user_group(request.user)
+    
+    if current_group == 'King' or current_group == 'Dragon' or current_group == 'Admin':
+        messages.error(request, 'You cannot downgrade your support tier.')
+        return redirect('donate')
+    if current_group == 'Overlord':
+        messages.error(request, "You can't buy a Overlord again")
+        return redirect('donate')
     overlord_group, created = Group.objects.get_or_create(name='Overlord')
     
     request.user.groups.clear()
-
     request.user.groups.add(overlord_group)
     
-    messages.success(request, 'Вы теперь overlord')
+    messages.success(request, 'You are now an Overlord!')
     return redirect('donate')
 
+@login_required
 def donate_King(request):
-   
-    King_group, created = Group.objects.get_or_create(name='King')
+    current_group = get_user_group(request.user)
+    
+    if current_group == 'Dragon' or current_group == 'Admin':
+        messages.error(request, 'You cannot downgrade your support tier.')
+        return redirect('donate')
+    if current_group == 'King':
+        messages.error(request, "You can't buy a King again")
+        return redirect('donate')
+    king_group, created = Group.objects.get_or_create(name='King')
     
     request.user.groups.clear()
-
-    request.user.groups.add(King_group)
+    request.user.groups.add(king_group)
     
-    messages.success(request, 'Вы теперь King')
+    messages.success(request, 'You are now a King!')
     return redirect('donate')
 
+@login_required
 def donate_Dragon(request):
-   
-    Dragon_group, created = Group.objects.get_or_create(name='Dragon')
+    current_group = get_user_group(request.user)
+    if current_group == 'Admin':
+        messages.error(request, 'You cannot downgrade your support tier.')
+        return redirect('donate')
+    if current_group == 'Dragon':
+        messages.error(request, "You can't buy a dragon again")
+        return redirect('donate')
+    
+    dragon_group, created = Group.objects.get_or_create(name='Dragon')
     
     request.user.groups.clear()
-
-    request.user.groups.add(Dragon_group)
+    request.user.groups.add(dragon_group)
     
-    messages.success(request, 'Вы теперь Dragon')
+    messages.success(request, 'You are now a Dragon!')
     return redirect('donate')
+
+def get_user_group(user):
+    groups = user.groups.values_list('name', flat=True)
+    return groups[0] if groups else None
+
 
 def donate(request):
     user_profile = UserProfile.objects.get(user=request.user) if request.user.is_authenticated else None

@@ -16,4 +16,6 @@ urlpatterns = [
     path("regiser/", registration, name='register'),
     path('accounts/', include('allauth.urls')),
     path('accounts/google/login/', include('allauth.urls'), name='google_login'),
+
+
 ]
