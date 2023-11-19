@@ -1,13 +1,13 @@
 from django.contrib import messages 
-from django.shortcuts import render, redirect
 from .forms import *
 from .models import *
 from django.http import JsonResponse
-from Profile.models import UserProfile
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from Profile.models import *
 from django.contrib.auth.models import Group
+
+
 
 @login_required
 def donate_overlord(request):
@@ -125,5 +125,3 @@ def registration(request):
     context = {'form': form}
     return render(request, 'main/create_user.html', context)
 
-
-    

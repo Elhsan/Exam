@@ -32,5 +32,8 @@ urlpatterns = [
     path('profile/', include('Profile.urls')),
     path('product/', include('Product.urls')),
     path('api/', include(router.urls)),
-    path('api-rest/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-rest/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api/product/', include('Product.api_urls')),
+
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

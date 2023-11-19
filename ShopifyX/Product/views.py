@@ -27,15 +27,13 @@ def add_to_wishlist(request, product_id):
         wishlist_item.save()
 
     messages.success(request, f"{product.name} added to your wishlist!")
-    return redirect('wishlist')
+    return redirect('product')
 
 def remove_from_wishlist(request, wishlist_id):
     wishlist_item = Wishlist.objects.get(id=wishlist_id)
 
-    if wishlist_item.quantity > 1:
-        wishlist_item.quantity -= 1
-        wishlist_item.save()
-    else:
+
+    if wishlist_item.quantity > 0:
         wishlist_item.delete()
 
     messages.success(request, f"{wishlist_item.product.name} removed from your wishlist!")
