@@ -1,67 +1,126 @@
 {% extends 'main/base.html' %}
-
+{% load static %}
 {% block content %}
 
-<div class="profiles-container">
-  <h2>Your Profile(s)</h2>
-  
-  {% if user_profile %}
-      <div class="profile" style="background-color: {{ user_profile.color }}">
-          <div class="name">{{ user_profile.first_name }}</div>
-          <div class="birth-date">{{ user_profile.birth_date }}</div>
-          <div class="interests">{{ user_profile.interests }}</div>
-          <hr>
-          {% if user.is_authenticated and user == user_profile.user or user_status.is_superuser or user_group == 'Admin' %}
-              <a href="{% url 'delete_detail' user_profile.id %}" class="btn btn-warning">Delete</a>
-              <a href="{% url 'profiles' %}" class="btn btn-warning">Edit</a>
-          {% endif %}
-      </div>
-  {% else %}
-      <p>No profile found.</p>
-      <a href="{% url 'profiles' %}" class="btn btn-primary">Create Profile</a>
-  {% endif %}
+<div class="container mt-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-7">
+      {% if user_profile %}
+        <div class="card p-3 py-4">
+          <div class="text-center">
+              {% if user_profile.profile_image %}
+                <img src="{{ user_profile.profile_image.url }}" width="100" class="rounded-circle">
+              {% else %}
+                <img src="{% static 'img/default.jpg' %}" width="100" class="rounded-circle">
+              {% endif %}
+          </div>
+          <div class="text-center mt-3">
+            <span class="bg-secondary p-1 px-4 rounded text-white">{{ user_group }}</span>
+            <h5 class="mt-2 mb-0">{{ user_profile.first_name }}</h5>
+            <span>{{ user_profile.birth_date }}</span>
+            <div class="px-4 mt-1">
+              <p class="fonts">{{ user_profile.description }}</p>
+            </div>
+            <ul class="social-list">
+              <!-- Здесь вы можете добавить логику для вывода социальных иконок -->
+            </ul>
+            <div class="buttons">
+              <a href="{% url 'profile_detail' user_profile.id %}" class="btn btn-outline-primary px-5" >Contact</a>
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <p>No profile found.</p>
+        <a href="{% url 'profiles' %}" class="btn btn-primary">Create Profile</a>
+      {% endif %}
+    </div>
+  </div>
 </div>
 
 
   <style>
-    .profiles-container {
-        max-width: 800px;
-        margin: 0 auto;
-      }
-      
-      h2 {
-        color: #333;
-      }
-      
-      .profile {
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        padding: 15px;
-        margin-bottom: 15px;
-        overflow: hidden;
-      }
-      
-      .name {
-        font-size: 18px;
-        font-weight: bold;
-      }
-      
-      .birth-date, .interests {
-        margin-top: 5px;
-        color: #555;
-        max-width: 400px; /* Максимальная высота текста */
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      
-      /* Разные цвета для карточек */
-      .profile:nth-child(odd) {
-        background-color: #f2f2f2; /* Светлый цвет для нечетных карточек */
-      }
-      
-      .profile:nth-child(even) {
-        background-color: #e6e6e6; /* Темный цвет для четных карточек */
-      }
-  </style>
+    body{
+      background:#eee;
+    }
+  
+    .card{
+        border:none;
+    
+        position:relative;
+        overflow:hidden;
+        border-radius:8px;
+        cursor:pointer;
+    }
+
+    .card:before{
+
+        content:"";
+        position:absolute;
+        left:0;
+        top:0;
+        width:4px;
+        height:100%;
+        background-color:#E1BEE7;
+        transform:scaleY(1);
+        transition:all 0.5s;
+        transform-origin: bottom
+    }
+
+    .card:after{
+
+        content:"";
+        position:absolute;
+        left:0;
+        top:0;
+        width:4px;
+        height:100%;
+        background-color:#8E24AA;
+        transform:scaleY(0);
+        transition:all 0.5s;
+        transform-origin: bottom
+    }
+
+    .card:hover::after{
+        transform:scaleY(1);
+    }
+
+
+    .fonts{
+        font-size:11px;
+    }
+
+    .social-list{
+        display:flex;
+        list-style:none;
+        justify-content:center;
+        padding:0;
+    }
+
+    .social-list li{
+        padding:10px;
+        color:#8E24AA;
+        font-size:19px;
+    }
+
+
+    .buttons button:nth-child(1){
+           border:1px solid #8E24AA !important;
+           color:#8E24AA;
+           height:40px;
+    }
+
+    .buttons button:nth-child(1):hover{
+           border:1px solid #8E24AA !important;
+           color:#fff;
+           height:40px;
+           background-color:#8E24AA;
+    }
+
+    .buttons button:nth-child(2){
+           border:1px solid #8E24AA !important;
+           background-color:#8E24AA;
+           color:#fff;
+            height:40px;
+    }
+  </style>  
 {% endblock %}

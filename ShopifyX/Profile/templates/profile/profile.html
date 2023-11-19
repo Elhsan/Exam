@@ -4,7 +4,7 @@
 {% block content %}
   <div class="profile-container">
     <h2>Your Profile</h2>
-    <form method="post" class="profile-form">
+    <form method="post" enctype="multipart/form-data" class="profile-form">
       {% csrf_token %}
       {{ form.as_p }}
       <button type="submit" class="save-button">Save</button>

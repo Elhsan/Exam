@@ -1,55 +1,128 @@
 {% extends 'main/base.html' %}
-
+{% load static %}
 {% block content %}
-<div class="profiles-container">
-    <h2>Profiles</h2>
-    
-      <div class="profile" style="background-color: {{ profile.color }}">
-        <div class="name">{{ profile.first_name }}</div>
-        <div class="birth-date">{{ profile.birth_date }}</div>
-        <div class="interests">{{ profile.interests }}</div>
-        {% if user.is_authenticated and user == profile.user or user_status.is_superuser or user_group == 'Admin' %}
-          <hr>
-          <a href="{% url 'delete_detail' profile.id  %}" class="btn btn-warning " >удалить</a>
-          <a href="{% url 'profiles' %}" class="btn btn-warning " >изменить</a>
-        {% endif %}
-      </div>
-  </div>
+<div class="container mt-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-7">
+      {% if profile %}
+        <div class="card p-3 py-4" style="background-color: {{ profile.color }}">
+          <div class="text-center">
+            <!-- Здесь вы можете заменить на изображение профиля из ваших данных -->
+            {% if user_profile.profile_image %}
+            <img src="{{ user_profile.profile_image.url }}" width="100" class="rounded-circle">
+          {% else %}
+            <img src="{% static 'img/default.jpg' %}" width="100" class="rounded-circle">
+          {% endif %}
 
-  <style>
-    .profiles-container {
-        max-width: 800px;
-        margin: 0 auto;
-      }
-      
-      h2 {
-        color: #333;
-      }
-      
-      .profile {
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        padding: 15px;
-        margin-bottom: 15px;
-      }
-      
-      .name {
-        font-size: 18px;
-        font-weight: bold;
-      }
-      
-      .birth-date, .interests {
-        margin-top: 5px;
-        color: #555;
-      }
-      
-      /* Разные цвета для карточек */
-      .profile:nth-child(odd) {
-        background-color: #f2f2f2; /* Светлый цвет для нечетных карточек */
-      }
-      
-      .profile:nth-child(even) {
-        background-color: #e6e6e6; /* Темный цвет для четных карточек */
-      }
-  </style>
+
+          </div>
+          <div class="text-center mt-3">
+            <h5 class="mt-2 mb-0">{{ profile.first_name }}</h5>
+
+            <span>{{ profile.birth_date }}</span>
+            <div class="px-4 mt-1">
+              <p class="fonts">{{ profile.interests }}</p>
+            </div>
+            {% if user.is_authenticated and user == profile.user %}
+              <hr>
+              <a href="{% url 'delete_detail' profile.id %}" class="btn btn-warning">удалить</a>
+              <a href="{% url 'profiles' %}" class="btn btn-warning">изменить</a>
+            {% endif %}
+          </div>
+        </div>
+      {% else %}
+        <p>No profile found.</p>
+        <a href="{% url 'profiles' %}" class="btn btn-primary">Create Profile</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+<style>
+  body{
+    background:#eee;
+  }
+
+  .card{
+      border:none;
+  
+      position:relative;
+      overflow:hidden;
+      border-radius:8px;
+      cursor:pointer;
+  }
+
+  .card:before{
+
+      content:"";
+      position:absolute;
+      left:0;
+      top:0;
+      width:4px;
+      height:100%;
+      background-color:#E1BEE7;
+      transform:scaleY(1);
+      transition:all 0.5s;
+      transform-origin: bottom
+  }
+
+  .card:after{
+
+      content:"";
+      position:absolute;
+      left:0;
+      top:0;
+      width:4px;
+      height:100%;
+      background-color:#8E24AA;
+      transform:scaleY(0);
+      transition:all 0.5s;
+      transform-origin: bottom
+  }
+
+  .card:hover::after{
+      transform:scaleY(1);
+  }
+
+
+  .fonts{
+      font-size:11px;
+  }
+
+  .social-list{
+      display:flex;
+      list-style:none;
+      justify-content:center;
+      padding:0;
+  }
+
+  .social-list li{
+      padding:10px;
+      color:#8E24AA;
+      font-size:19px;
+  }
+
+
+  .buttons button:nth-child(1){
+         border:1px solid #8E24AA !important;
+         color:#8E24AA;
+         height:40px;
+  }
+
+  .buttons button:nth-child(1):hover{
+         border:1px solid #8E24AA !important;
+         color:#fff;
+         height:40px;
+         background-color:#8E24AA;
+  }
+
+  .buttons button:nth-child(2){
+         border:1px solid #8E24AA !important;
+         background-color:#8E24AA;
+         color:#fff;
+          height:40px;
+  }
+</style>
+
 {% endblock %}

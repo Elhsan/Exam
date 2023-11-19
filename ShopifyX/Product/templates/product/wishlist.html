@@ -2,7 +2,8 @@
 
 {% block content %}
 <h1 class="wishlist-heading">Your Wishlist</h1>
-{% for item in wishlist_items %}
+{% if wishlist_items %}
+  {% for item in wishlist_items %}
     <div class="wishlist-row">
     <div class="table-cell">{{ item.product.name }}</div>
     <div class="table-cell">
@@ -17,8 +18,12 @@
     <div class="table-cell">
         <a class="remove-btn" href="{% url 'remove_from_wishlist' item.id %}">Remove</a>
     </div>
-</div>
-{% endfor %}
+  </div>
+  {% endfor %}
+{% else %}
+  <p style="text-align: center;">No items in your wishlist. 😭😭😭</p>
+{% endif %}
+
   
   <style>
     body {

@@ -12,26 +12,16 @@ def profile(request):
     user_profile, created = UserProfile.objects.get_or_create(user=request.user)
 
     if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=user_profile)
+        form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
         if form.is_valid():
             form.save()
             messages.success(request, 'Your profile has been updated!')
             return redirect('profile')
     else:
         form = UserProfileForm(instance=user_profile)
-        user_status = {
-        'is_active': request.user.is_active,
-        'is_staff': request.user.is_staff,
-        'is_superuser': request.user.is_superuser,
-        'username': request.user.username,
-        }
-        context = {
-            'form': form,
-            'user_status': user_status,
-        }
 
-    return render(request, 'profile/profile.html', context)
-
+    return render(request, 'profile/profile.html', {'form': form})
+ 
 @login_required
 def news_profile(request):
     try:
