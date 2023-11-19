@@ -10,7 +10,7 @@
         <p>No image available</p>
       {% endif %}
       <p class="description">Description: {{ product.description }}</p>
-      <p>Reviews: {{ product.reviews }}</p>
+      <p>Price: {{ product.price }}</p>
       <p>Created by: <a class="" href="{% url 'profile_detail' creator_profile.id %}">View Creator's Profile</a></p>
 
       {% if not user == product.user %}

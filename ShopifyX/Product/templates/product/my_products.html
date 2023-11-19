@@ -14,7 +14,7 @@
                     <p>No image available</p>
                   {% endif %}
                     <p class="description">Description: {{ product.description }}</p>
-                    <p>Reviews: {{ product.reviews }}</p>
+                    <p>Price: {{ product.price }}</p>
                     <a class="btn btn-success" href="{% url 'view_product' product_id=product.id %}">Посмотреть</a>
         
                     {% if user.is_authenticated and user == product.user or user_status.is_superuser %}

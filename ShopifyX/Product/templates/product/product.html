@@ -1,6 +1,18 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+<div class="container">
+  <form method="get" action="{% url 'product' %}" class="sort-form">
+    <label for="sort_order">Sort Product:</label>
+    <select name="sort_order" id="sort_order">
+      <option value="ascending">Сheap</option>
+      <option value="descending">Expensive</option>
+    </select>
+    <button type="submit" class="btn btn-outline-primary px-5">Sort</button>
+  </form>
+</div>
+
+
   <div class="product-cards-container">
     {% for product in products %}
       <div class="product-card">
@@ -11,7 +23,7 @@
           <p>No image available</p>
         {% endif %}
         <p class="description">description: {{ product.description}}</p>
-        <p>reviews: {{ product.reviews }}</p>
+        <p>Price: {{ product.price }}$</p>
         {% if not user == product.user %}
         <a class="btn btn-success" href="{% url 'add_to_wishlist' product_id=product.id %}">Buy</a>
         {% endif %}
@@ -26,6 +38,33 @@
   </div>
 
   <style>
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 9vh;
+      margin-top: 15px;
+    }
+    
+    .sort-form {
+      text-align: center;
+    }
+    
+    label {
+      font-size: 1.2em; /* Измените размер шрифта по своему усмотрению */
+    }
+    
+    select {
+      height: 38px;
+
+    }
+    
+    .btn {
+      height: 38px;
+    }
+  
+ 
+
     .product-cards-container {
       display: flex;
       flex-wrap: wrap;
