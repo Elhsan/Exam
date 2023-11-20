@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404, redirect
-
+from django.db.models import Sum
 from django.contrib import messages 
 from .forms import *
 from .models import *
@@ -16,7 +16,8 @@ def wishlist(request):
         'username': request.user.username,
     }
     wishlist_items = Wishlist.objects.filter(user=request.user)
-    return render(request, 'product/wishlist.html', {'wishlist_items': wishlist_items, 'user_status': user_status, 'user_group': user_group})
+    total_price = wishlist_items.aggregate(Sum('product__price'))['product__price__sum'] or 0
+    return render(request, 'product/wishlist.html', {'wishlist_items': wishlist_items, 'user_status': user_status, 'user_group': user_group, 'total_price': total_price})
 
 def add_to_wishlist(request, product_id):
     product = Product.objects.get(id=product_id)

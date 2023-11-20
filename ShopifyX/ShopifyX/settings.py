@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'Product',
     'django_bootstrap5',
     'rest_framework',
-
+    'django.contrib.humanize',
     'rest_framework_simplejwt',
 
     'allauth',

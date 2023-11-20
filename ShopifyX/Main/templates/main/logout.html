@@ -6,7 +6,7 @@
 
 {% block auth_content %}
   <nav class="nav nav-1">
-    <a href="">
+    <a href="{% url 'home_page' %}">
       <img class="logo" src="{% static 'img/logo.png' %}" alt="" />
     </a>
     <a href="{% url 'register' %}" class="btn btn-signin">Sign Up</a>
@@ -16,7 +16,7 @@
     <div class="logout-container margin-inline">
       <h1 class="text-black margin-bottom-1">Leaving So Soon</h1>
       <p class="text-black">
-        Just so you know, you don’t always need to sign out of Netflix. It’s only necessary if you’re on a shared or public computer. <br />
+        Just so you know, you don’t always need to sign out of ShopifyX. It’s only necessary if you’re on a shared or public computer. <br />
         <br>
 
       </p>
@@ -29,7 +29,7 @@
     <div class="footer-container margin-inline">
       <p>
         Questions? <br />
-        Call 007-803-321-2130
+        Call +998-93-335-14-99
       </p>
       <div class="links">
         <ul class="">
@@ -47,16 +47,6 @@
         <a class="text-terms text-underline" href="">Privacy</a>
       </div>
 
-      <div class="language">
-        <select class="language-select" onchange="location=this.value;">
-          <option value="" selected>English</option>
-          <option value="">Bahasa Indonesia</option>
-        </select>
-        <div class="language-icon">
-          <i class="fas fa-globe globe"></i>
-          <i class="fas fa-chevron-down chevron"></i>
-        </div>
-      </div>
     </div>
   </footer>
 
