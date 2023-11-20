@@ -58,6 +58,17 @@ def product(request):
         products = Product.objects.all()
 
     return render(request, 'product/product.html', {'products': products, 'user_status': user_status, 'user_group': user_group, 'products': products})
+def credit_card_page(request):
+    user_group = None
+    if request.user.groups.exists():
+        user_group = request.user.groups.first().name
+    user_status = {
+        'username': request.user.username,
+    }
+    wishlist_items = Wishlist.objects.filter(user=request.user)
+    total_price = wishlist_items.aggregate(Sum('product__price'))['product__price__sum'] or 0
+    Subtotal = total_price + 5% + 5
+    return render(request, 'product/credit_card.html', {'user_status': user_status, 'user_group': user_group, 'Subtotal':Subtotal})
 
 def edit_product(request, product_id):
     product = get_object_or_404(Product, id=product_id)

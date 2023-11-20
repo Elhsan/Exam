@@ -9,6 +9,7 @@ urlpatterns = [
     path('product/<int:product_id>/edit', edit_product, name='edit_product'),
     path('product/<int:product_id>/delete/', delete_product, name='delete_product'),
     path('wishlist/', wishlist, name='wishlist'),
+    path("credit_card/", credit_card_page, name='credit_card'),
     path('add_to_wishlist/<int:product_id>/', add_to_wishlist, name='add_to_wishlist'),
     path('remove_from_wishlist/<int:wishlist_id>/', remove_from_wishlist, name='remove_from_wishlist'),
     
