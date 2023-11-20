@@ -54,6 +54,7 @@
       </div> {% endcomment %}
       {% bootstrap_messages %}
       {% block auth_content %}
+      {% include "main/home_auth.html" %}
       {% endblock %}
      
     {% endif %}
@@ -61,4 +62,5 @@
     {% bootstrap_javascript %}
 
   </body>
+
 </html>

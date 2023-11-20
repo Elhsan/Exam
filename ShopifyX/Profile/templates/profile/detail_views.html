@@ -7,21 +7,32 @@
       {% if profile %}
         <div class="card p-3 py-4" style="background-color: {{ profile.color }}">
           <div class="text-center">
-            <!-- Здесь вы можете заменить на изображение профиля из ваших данных -->
             {% if user_profile.profile_image %}
             <img src="{{ user_profile.profile_image.url }}" width="100" class="rounded-circle">
           {% else %}
             <img src="{% static 'img/default.jpg' %}" width="100" class="rounded-circle">
           {% endif %}
-
-
           </div>
           <div class="text-center mt-3">
             <h5 class="mt-2 mb-0">{{ profile.first_name }}</h5>
 
             <span>{{ profile.birth_date }}</span>
             <div class="px-4 mt-1">
-              <p class="fonts">{{ profile.interests }}</p>
+              <p class="truncate-text"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" data-max-chars="15">{{ profile.interests }}</p>
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <p>{{ profile.interests }}</p>
+  
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+  
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             {% if user.is_authenticated and user == profile.user %}
               <hr>
@@ -50,7 +61,6 @@
       position:relative;
       overflow:hidden;
       border-radius:8px;
-      cursor:pointer;
   }
 
   .card:before{
@@ -59,7 +69,7 @@
       position:absolute;
       left:0;
       top:0;
-      width:4px;
+      width:8px;
       height:100%;
       background-color:#E1BEE7;
       transform:scaleY(1);
@@ -73,9 +83,10 @@
       position:absolute;
       left:0;
       top:0;
-      width:4px;
+      width:8px;
       height:100%;
-      background-color:#8E24AA;
+      background: rgb(174,53,171);
+      background: linear-gradient(0deg, rgba(174,53,171,1) 9%, rgba(162,0,255,1) 20%, rgba(171,0,255,1) 27%, rgba(141,0,255,1) 35%, rgba(85,0,255,1) 44%, rgba(0,26,255,1) 54%, rgba(0,142,255,1) 66%, rgba(0,232,255,1) 75%, rgba(0,95,255,1) 91%);
       transform:scaleY(0);
       transition:all 0.5s;
       transform-origin: bottom
@@ -86,9 +97,15 @@
   }
 
 
-  .fonts{
-      font-size:11px;
-  }
+  .truncate-text {
+    margin-left: 125px;
+    max-width: 300px; /* Adjust the height as needed */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor:pointer;
+
+}
 
   .social-list{
       display:flex;
