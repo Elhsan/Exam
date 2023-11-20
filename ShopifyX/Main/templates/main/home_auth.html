@@ -237,11 +237,9 @@
       position: relative;
       width: 100%;
     }
-
-    /*##### HERO SECTION #####*/
     .hero {
       height: 100%;
-      /* Credit image : Unsplash - Luke Chesser */
+
       background: url("https://source.unsplash.com/a2NRu2Wxa2o/");
       background-size: cover;
       background-position: center;
@@ -266,7 +264,6 @@
       text-shadow: 0px 2px 3px #2d2d2d;
     }
 
-    /*##### ABOUT MYSELF SECTION #####*/
     .about-myself {
       padding: 50px 20px;
     }
@@ -292,7 +289,7 @@
       font-weight: bold;
     }
 
-    /*##### EXPERIENCE SECTION #####*/
+  
     .experience {
       background: #1a1a1a;
       padding: 50px 0;
@@ -371,7 +368,7 @@
       height: 5px;
     }
 
-    /*##### SKILLS SECTION #####*/
+
     .skills {
       padding: 70px 20px;
     }
@@ -447,7 +444,7 @@
       color: #27ae60;
     }
 
-    /*##### RESUME SECTION #####*/
+
     .resume {
       background: #1a1a1a;
       background-size: cover;
@@ -500,7 +497,7 @@
       top: 0;
     }
 
-    /*##### PORTFOLIO SECTION #####*/
+
     .portfolio {
       background: #f9f9f9;
       padding: 80px 0;
@@ -539,7 +536,6 @@
       color: #444;
     }
 
-    /*##### CONTACT SECTION #####*/
     .contact {
       padding: 30px 0;
     }
@@ -587,9 +583,7 @@
       color: #e74c3c;
     }
 
-    /* ############################
-            RESPONSIVE
-    ############################### */
+
     @media screen and (min-width: 480px) {
       .skills .content .tools-knowledge-wrapper .tools-wrapper,
     .skills .content .tools-knowledge-wrapper .knowledge-wrapper {
@@ -765,7 +759,7 @@
         var developmentWrapper = document.querySelector(".development-wrapper");
         var developmentIsVisible = false;
       
-        /* ####### HERO SECTION ####### */
+
       
         var header = document.querySelector(".hero .content .header");
         setTimeout(function () {
@@ -775,13 +769,12 @@
       
         window.addEventListener("scroll", function () {
           var bottomOfWindow = window.scrollY + window.innerHeight;
-      
-          /* ##### ABOUT MYSELF SECTION #### */
+
           if (bottomOfWindow > aboutTitle.offsetTop + aboutTitle.offsetHeight) {
             aboutTitle.classList.add("aboutTitleVisible");
           }
       
-          /* ##### EXPERIENCE SECTION #### */
+
           var hiddenElements = document.querySelectorAll(".experience .content .hidden");
           hiddenElements.forEach(function (element) {
             var bottomOfObject = element.offsetTop + element.offsetHeight;
@@ -792,7 +785,7 @@
             }
           });
       
-          /*###### SKILLS SECTION ######*/
+
           var middleOfDevelopmentWrapper =
             developmentWrapper.offsetTop + developmentWrapper.offsetHeight / 2;
       
