@@ -55,7 +55,7 @@
     </div>
 
     <div class="right">
-      <h1 class="total">Total: <span>177.16</span>$</h1>
+      <h1 class="total">Total: <span></span>$</h1>
       <a class="btn" href="#">Checkout</a>
     </div>
 
@@ -447,8 +447,11 @@
       $(".full-price").each(function(index) {
         total += parseFloat($(".full-price").eq(index).text().replace(" $", ""));
       });
-
+      total_foter = Math.round(total * 100) / 100
+      tax_foter = Math.round(total * 0.05)
+      $(".subtotal span").html(Math.round(total_foter + tax_foter + 5));
       $(".total span").html(Math.round(total * 100) / 100);
+      $(".tax span").html(Math.round(total * 0.05));
     }
 
     function adjustQuantity(itemId, change) {
@@ -487,6 +490,21 @@
       
         var el = $(this);
         window.setTimeout(function(){el.parent().children(".full-price").removeClass("added"); changeTotal();}, 150);
+      });
+
+      $(".qt-minus").click(function () {
+        var quantityElement = $(this).siblings(".qt");
+        var itemId = quantityElement.attr('id').split('-')[1];
+        adjustQuantity(itemId, -1);
+      
+        var eq = Math.round(parseFloat($(this).parent().children(".price").html()) * parseFloat(quantityElement.html()) * 100) / 100;
+      
+        $(this).parent().children(".full-price").html(eq + " $");
+      
+        $(this).parent().children(".full-price").addClass("minused");
+      
+        var el = $(this);
+        window.setTimeout(function () { el.parent().children(".full-price").removeClass("minused"); changeTotal(); }, 150);
       });
 
       // ... rest of your existing code ...

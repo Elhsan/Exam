@@ -1,6 +1,7 @@
 from django.contrib import messages 
 from .forms import *
 from .models import *
+from django.contrib.auth import login
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
@@ -113,12 +114,12 @@ def registration(request):
     if request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['username']
-            messages.success(request, f"Welcome to our site {username}!")
-            form.save()
-            return redirect('login')
-        else:
-            messages.error(request, "Please correct the errors below.")
+            user = form.save(commit=False)
+            user_profile = form.save(commit=False)
+            user_profile.user = user
+            user_profile.save()
+            login(request, user)
+            return redirect('home_page')  # Replace 'home' with your actual home page URL
     else:
         form = UserForm()
 
