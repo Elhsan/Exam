@@ -29,7 +29,7 @@
       <footer class="content">
         <span class="qt-minus">-</span>
         <span class="qt" id="quantity-{{ item.id }}">{{ item.quantity }}</span>
-        <span class="qt-plus">+</span>
+        <a class="qt-plus" href="{% url 'add_to_wishlist' product_id=item.product.id %}">+</a>
         <a class="qt-plus" style="margin-left: 10px; text-align: center;" href="{% url 'remove_from_wishlist' wishlist_id=item.id %}" data-item-id="{{ item.id }}">Delete</a>
         <h2 class="full-price" id="full-price-{{ item.id }}">
           {{ item.product.price|floatformat:item.quantity }} $

@@ -7,7 +7,7 @@ from Profile.models import *
 
 
 
-# Create your views here.
+
 def wishlist(request):
     user_group = None
     if request.user.groups.exists():
@@ -15,12 +15,18 @@ def wishlist(request):
     user_status = {
         'username': request.user.username,
     }
+    products = Product.objects.all()
     wishlist_items = Wishlist.objects.filter(user=request.user)
     total_price = wishlist_items.aggregate(Sum('product__price'))['product__price__sum'] or 0
-    return render(request, 'product/wishlist.html', {'wishlist_items': wishlist_items, 'user_status': user_status, 'user_group': user_group, 'total_price': total_price})
+    return render(request, 'product/wishlist.html', {'wishlist_items': wishlist_items, 'user_status': user_status, 'user_group': user_group, 'total_price': total_price, 'product': product})
 
 def add_to_wishlist(request, product_id):
-    product = Product.objects.get(id=product_id)
+    try:
+        product = Product.objects.get(id=product_id)
+    except Product.DoesNotExist:
+        messages.error(request, "Product not found.")
+        return redirect('product')
+
     wishlist_item, created = Wishlist.objects.get_or_create(user=request.user, product=product)
 
     if not created:
@@ -28,7 +34,14 @@ def add_to_wishlist(request, product_id):
         wishlist_item.save()
 
     messages.success(request, f"{product.name} added to your wishlist!")
-    return redirect('product')
+
+    # Check the referring page and redirect accordingly
+    referring_page = request.META.get('HTTP_REFERER', '')
+    if 'wishlist' in referring_page:
+        return redirect('wishlist')
+    else:
+        return redirect('product')
+
 
 def remove_from_wishlist(request, wishlist_id):
     wishlist_item = Wishlist.objects.get(id=wishlist_id)
@@ -68,7 +81,7 @@ def credit_card_page(request):
     wishlist_items = Wishlist.objects.filter(user=request.user)
     total_price = wishlist_items.aggregate(Sum('product__price'))['product__price__sum'] or 0
     Subtotal = total_price + 5% + 5
-    return render(request, 'product/credit_card.html', {'user_status': user_status, 'user_group': user_group, 'Subtotal':Subtotal})
+    return render(request, 'product/credit_card.html', {'user_status': user_status, 'user_group': user_group, 'Subtotal':Subtotal, 'wishlist_items':wishlist_items})
 
 def edit_product(request, product_id):
     product = get_object_or_404(Product, id=product_id)

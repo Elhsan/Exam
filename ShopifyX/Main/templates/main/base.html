@@ -44,14 +44,6 @@
         </div>
       </main>
     {% else %}
-      {% comment %} <div class="logged-out-navbar">
-
-        <div class="log_reg">
-
-          <a href="{% url 'register' %}" class="register">Sign up</a>
-          <a href="{% url 'login' %}" class="login">Sign in</a>
-        </div>
-      </div> {% endcomment %}
       {% bootstrap_messages %}
       {% block auth_content %}
       {% include "main/home_auth.html" %}
