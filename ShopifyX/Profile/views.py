@@ -5,7 +5,7 @@ from .models import *
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView, DeleteView
 from django.contrib.auth.decorators import login_required
-
+from Product.models import *
 
 @login_required
 def profile(request):
@@ -36,9 +36,11 @@ def news_profile(request):
     user_status = {
         'username': request.user.username,
     }
+    products = Product.objects.filter(user=request.user)
     context = {
         'user_profile': user_profile,
         'user_status': user_status,
+        'products': products,
         'user_group': user_group
     }
     return render(request, 'profile/news_profiles.html', context)
