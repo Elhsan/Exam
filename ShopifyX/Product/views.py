@@ -111,7 +111,21 @@ def view_product(request, product_id):
         user_group = request.user.groups.first().name
     product = get_object_or_404(Product, id=product_id)
     creator_profile = UserProfile.objects.get(user=product.user)
-    return render(request, 'product/view_product.html', {'product': product, 'user_status': {'username': request.user.username}, 'creator_profile': creator_profile, 'user_group': user_group})
+    comments = product.comments.all() 
+
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.user = request.user
+            new_comment.product = product
+            new_comment.save()
+            messages.success(request, 'Comment added successfully.')
+            return redirect('view_product', product_id=product.id)
+    else:
+        comment_form = CommentForm()
+
+    return render(request, 'product/view_product.html', {'comment_form': comment_form,'comments': comments, 'product': product, 'user_status': {'username': request.user.username}, 'creator_profile': creator_profile, 'user_group': user_group})
 def delete_product(request, product_id):
     product = get_object_or_404(Product, id=product_id)
 
