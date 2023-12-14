@@ -162,6 +162,7 @@ LOGOUT_URL = 'logout'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
+handler404 = 'main.views.handler404'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
