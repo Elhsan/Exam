@@ -8,12 +8,14 @@
         <div class="icon">
           <a href="{% url 'product' %}"><i class="fa fa-arrow-left"></i></a>
         </div>     
-        <div class="icon-2">
-          <a href="{% url 'edit_product' product_id=product.id %}">✎</a>
-        </div>
-        <div class="icon-3">
-          <a href="{% url 'delete_product' product_id=product.id %}">🚮</a>
-        </div>
+        {% if user.is_authenticated and user == product.user or user_status.is_superuser or user_group == 'Admin' %}
+          <div class="icon-2">
+            <a href="{% url 'edit_product' product_id=product.id %}">✎</a>
+          </div>
+          <div class="icon-3">
+            <a href="{% url 'delete_product' product_id=product.id %}">🚮</a>
+          </div>
+        {% endif %}
         <h3>{{ product.name }}</h3>
       </div>
       <div class="card__body">
