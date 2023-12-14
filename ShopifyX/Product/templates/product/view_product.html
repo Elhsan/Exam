@@ -7,6 +7,12 @@
       <div class="card__title">
         <div class="icon">
           <a href="{% url 'product' %}"><i class="fa fa-arrow-left"></i></a>
+        </div>     
+        <div class="icon-2">
+          <a href="{% url 'edit_product' product_id=product.id %}">✎</a>
+        </div>
+        <div class="icon-3">
+          <a href="{% url 'delete_product' product_id=product.id %}">🚮</a>
         </div>
         <h3>{{ product.name }}</h3>
       </div>
@@ -43,7 +49,7 @@
           <h3>Andrew Palmer</h3>
         </div>
         <div class="action">
-          <button type="button">Add to cart</button>
+          <a  href="{% url 'add_to_wishlist' product_id=product.id %}"><button type="button">Add to wishlist</button></a>
         </div>
       </div>
     </div>
@@ -79,7 +85,7 @@
     }
     .card .card__title h3 {
 
-      flex: 0 1 500px;
+      flex: 0 1 450px;
       text-align: right;
       margin: 0;
       color: #252525;
@@ -93,8 +99,32 @@
       background: #115dd8;
       color: #fff;
       padding: 10px 10px;
+      text-align: center;
+      align-items: center;
       transition: 200ms;
-      width: 50px;
+      width: 40px;
+    }
+    .card .card__title .icon-2 {
+      border-radius: 40px;
+      background: green;
+      color: #fff;
+      padding: 10px 10px;
+      margin-left: 6px;
+      text-align: center;
+      align-items: center;
+      transition: 200ms;
+      width: 40px;
+    }
+    .card .card__title .icon-3 {
+      border-radius: 40px;
+      background: red;
+      color: #fff;
+      padding: 10px 10px;
+      margin-left: 6px;
+      text-align: center;
+      align-items: center;
+      transition: 200ms;
+      width: 40px;
     }
     .card .card__title .icon > a {
       color: #fff;

@@ -11,115 +11,146 @@
     <button type="submit" class="btn btn-outline-primary px-5">Sort</button>
   </form>
 </div>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 
-
-<div class="row row-cols-1 row-cols-md-3 g-3" >
+<section class="hero-section">
+  <div class="card-grid">
   {% for product in products %}
-    <div class="col">
-      <div class="card" style="width: 18rem; height: 30rem;">
-        {% if product.image %}
-          <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
-        {% else %}
-          <img src="{% static 'img/default.jpg' %}" class="card-img-top" alt="{{ product.name }}">
-        {% endif %}
-        <div class="card-body">
-          <h5 class="card-title">{{ product.name }}</h5>
-          <p class="card-text">Description: {{ product.description }}</p>
-          <p class="card-text">Price: {{ product.price }}$</p>
-          {% if not user == product.user %}
-            <a class="btn btn-success" href="{% url 'add_to_wishlist' product_id=product.id %}">Buy</a>
-          {% endif %}
-          <a class="btn btn-success" href="{% url 'view_product' product_id=product.id %}">Посмотреть</a>
-          <br>
-          <br>
-          {% if user.is_authenticated and user == product.user or user_status.is_superuser or user_group == 'Admin' %}
-            <a class="btn btn-warning" href="{% url 'edit_product' product_id=product.id %}">Edit</a>
-            <a class="btn btn-warning" href="{% url 'delete_product' product_id=product.id %}">Delete</a>
-          {% endif %}
-        </div>
+
+    <a class="card" href="{% url 'view_product' product_id=product.id %}">
+      <div class="card__background" style="background-image: url({{ product.image.url }})"></div>
+      <div class="card__content">
+        <p class="card__category">${{ product.price }}</p>
+        <h3 class="card__heading">{{ product.name }}</h3>
       </div>
-    </div>
-  {% endfor %}
-</div>
+    </a>
+    {% endfor %}
 
-  <style>
+      <div>
+</section>
+<style>
+  :root {
+    --text-light: rgba(255, 255, 255, 0.6);
+    --text-lighter: rgba(255, 255, 255, 0.9);
+    --spacing-s: 8px;
+    --spacing-m: 16px;
+    --spacing-l: 24px;
+    --spacing-xl: 32px;
+    --spacing-xxl: 64px;
+    --width-container: 1200px;
+  }
+  
+  * {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .sort-form {
+    color: aliceblue;
+    text-align: center;
+  }
+  html {
+    height: 100%;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+  }
+  
+  body {
+    height: 100%;
+    background-color: #2d3548;
 
-    .container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 9vh;
-      margin-top: 15px;
+  }
+  
+  .hero-section {
+    align-items: flex-start;
+    background-image: linear-gradient(15deg, #0f4667 0%, #2a6973 150%);
+    display: flex;
+    min-height: 100%;
+    justify-content: center;
+    padding: var(--spacing-xxl) var(--spacing-l);
+  }
+  
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-column-gap: var(--spacing-l);
+    grid-row-gap: var(--spacing-l);
+    max-width: var(--width-container);
+    width: 100%;
+  }
+  
+  @media (min-width: 540px) {
+    .card-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
-    
-    .sort-form {
-      text-align: center;
-    }
-    
-    label {
-      font-size: 1.2em;
-    }
-    
-    select {
-      height: 38px;
-    }
-    
-    .btn {
-      height: 38px;
-    }
-    
-    .row {
-      display: grid;
+  }
+  
+  @media (min-width: 960px) {
+    .card-grid {
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      width: 80%;
-      margin-left: 8%;
-      margin-top: 4%;
     }
-    .card {
-      background: rgb(45,134,195);
-      background: linear-gradient(148deg, rgba(45,134,195,1) 32%, rgba(30,52,215,1) 53%, rgba(128,0,255,1) 69%);
-      color: #fff;
-    }
-    .col {
-      width: 100%;
-    }
-    @media (min-width: 400px) {
-      .row {
-        grid-template-columns: repeat(1, 1fr);
-      }
-    }
-    @media (min-width: 450px) {
-      .row {
-        grid-template-columns: repeat(2, 1fr); 
-      }
-    }
-    
-    @media (min-width: 768px) {
-      .row {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    @media (min-width: 992px) {
-      .row {
-        grid-template-columns: repeat(4, 1fr); 
-      }
-    }
-    @media (min-width: 1392px) {
-      .row {
-        grid-template-columns: repeat(4.5, 1fr);
-      }
-    }
-    @media (min-width: 1450px) {
-      .row {
-        grid-template-columns: repeat(5, 1fr);
-      }
-    }
-    @media (min-width: 1592px) {
-      .row {
-        grid-template-columns: repeat(12, 1fr); 
-      }
-    }
-  </style>
+  }
+  
+  .card {
+    list-style: none;
+    position: relative;
+  }
+  
+  .card:before {
+    content: "";
+    display: block;
+    padding-bottom: 150%;
+    width: 100%;
+  }
+  
+  .card__background {
+    background-size: cover;
+    background-position: center;
+    border-radius: var(--spacing-l);
+    bottom: 0;
+    filter: brightness(0.75) saturate(1.2) contrast(0.85);
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform-origin: center;
+    trsnsform: scale(1) translateZ(0);
+    transition: filter 200ms linear, transform 500ms linear;
+  }
+  
+  .card:hover .card__background {
+    transform: scale(1.05) translateZ(0);
+  }
+  
+  .card-grid:hover > .card:not(:hover) .card__background {
+    filter: brightness(0.5) saturate(0) contrast(1.2) blur(20px);
+  }
+  
+  .card__content {
+    left: 0;
+    padding: var(--spacing-l);
+    position: absolute;
+    top: 0;
+  }
+  
+  .card__category {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: var(--spacing-s);
+    text-transform: uppercase;
+  }
+  
+  .card__heading {
+    color: var(--text-lighter);
+    font-size: 1.9rem;
+    text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+    line-height: 1.4;
+    word-spacing: 100vw;
+  }
+  
+</style>
+
 
   {% endblock %}
