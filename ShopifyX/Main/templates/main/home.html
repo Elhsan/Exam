@@ -74,16 +74,45 @@ body {
 
 /* CSS for main section */
 .intro {
+  background-color: #302f49;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 520px;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url("https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1031&q=80");
+  height: 600px;
+  padding: 0 80px;
+  text-align: center;
+  background-image: url('https://images.unsplash.com/photo-1596495578065-6e0763fa1178?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-blend-mode: overlay;
+  color: #fff;
+  font-family: 'Sriracha', cursive;
+  text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 2px solid #fff;
+  margin: 20px 80px;
+  padding: 40px 80px;
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  border: 2px solid #fff;
+  margin: 20px 80px;
+  padding: 40px 80px;
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  border: 2px solid #fff;
+  margin: 20px 80px;
+  padding: 40px 80px;
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  border: 2px solid #fff;
+  margin: 20px 80px;
+  padding: 40px 80px;
+  box-shadow: 0
 }
 
 .intro h1 {
@@ -118,6 +147,42 @@ body {
   justify-content: space-around;
   align-items: center;
   padding: 40px 80px;
+  border-top: 2px solid #eeeeee;
+  border-bottom: 2px solid #eeeeee;
+  margin: 20px 80px;
+  padding: 40px 80px;
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  border: 2px solid #fff;
+  margin: 20px 80px;
+  padding: 40px 80px;
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  border: 2px solid #fff;
+  margin: 20px 80px;
+  padding: 40px 80px;
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  border: 2px solid #fff;
+  margin: 20px 80px;
+  padding: 40px 80px;
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  border: 2px solid #fff;
+  margin: 20px 80px;
+  padding: 40px 80px;
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  border: 2px solid #fff;
+  margin: 20px 80px;
+  padding: 40px 80px;
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  border: 2px solid #fff;
+  margin: 20px 80px;
+  padding: 40px 80px;
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4);
+  border-radius
 }
 
 .achievements .work {
@@ -136,6 +201,12 @@ body {
   border: 2px solid #333333;
   padding: 12px;
 }
+.achievements .work i:hover {
+  background-color: #333333;
+  color: #fff;
+  transition: 0.5s;
+}
+
 
 .achievements .work .work-heading {
   font-size: 20px;
@@ -161,7 +232,7 @@ body {
 }
 
 .about-me img {
-  width: 500px;
+  width: 300px;
   max-width: 100%;
   height: auto;
   border-radius: 10px;
@@ -230,5 +301,257 @@ body {
   color: #a1a1a1;
   padding: 10px 20px;
 }
+/* Create mediya */
+@media (max-width: 1568px) {
+
+  .intro h1 {
+    font-size: 50px;
+  }
+  .intro p {
+    font-size: 18px;
+  }
+  .intro button {
+    font-size: 18px;
+  }
+  .achievements {
+    padding: 40px 0;
+  }
+  .achievements .work {
+    padding: 20px 0;
+  }
+  .achievements .work i {
+    font-size: 40px;
+  }
+  .achievements .work .work-heading {
+    font-size: 18px;
+  }
+  .achievements .work .work-text {
+    font-size: 15px;
+  }
+  .about-me {
+    padding: 40px 0;
+  }
+  .about-me img {
+    width: 400px;
+  }
+  .about-me-text {
+    width: 400px;
+  }
+  .about-me-text h2 {
+    font-size: 25px;
+  }
+  .about-me-text p {
+    font-size: 15px;
+  }
+  .footer {
+    padding: 40px 0;
+  }
+  .footer .copy {
+    text-align: center;
+  }
+  .bottom-links {
+    padding: 40px 0;
+  }
+  .bottom-links .links {
+    padding: 0;
+  }
+  .bottom-links .links span {
+    font-size: 18px;
+  }
+  .bottom-links .links a {
+    padding: 5px 10px;
+  }
+}
+@media (max-width: 1268px) {
+
+  .intro h1 {
+    font-size: 50px;
+  }
+  .intro p {
+    font-size: 18px;
+  }
+  .intro button {
+    font-size: 18px;
+  }
+  .achievements {
+    padding: 40px 0;
+  }
+  .achievements .work {
+    padding: 20px 0;
+  }
+  .achievements .work i {
+    font-size: 40px;
+  }
+  .achievements .work .work-heading {
+    font-size: 18px;
+  }
+  .achievements .work .work-text {
+    font-size: 15px;
+  }
+  .about-me {
+    padding: 40px 0;
+  }
+  .about-me img {
+    width: 400px;
+  }
+  .about-me-text {
+    width: 400px;
+  }
+  .about-me-text h2 {
+    font-size: 25px;
+  }
+  .about-me-text p {
+    font-size: 15px;
+  }
+  .footer {
+    padding: 40px 0;
+  }
+  .footer .copy {
+    text-align: center;
+  }
+  .bottom-links {
+    padding: 40px 0;
+  }
+  .bottom-links .links {
+    padding: 0;
+  }
+  .bottom-links .links span {
+    font-size: 18px;
+  }
+  .bottom-links .links a {
+    padding: 5px 10px;
+  }
+}
+@media (max-width: 1024px) {
+  .intro {
+    height: 500px;
+    width: 80%;
+  }
+  .intro h1 {
+    font-size: 50px;
+  }
+  .intro p {
+    font-size: 18px;
+  }
+  .intro button {
+    font-size: 18px;
+  }
+  .achievements {
+    padding: 40px 0;
+  }
+  .achievements .work {
+    padding: 20px 0;
+  }
+  .achievements .work i {
+    font-size: 40px;
+  }
+  .achievements .work .work-heading {
+    font-size: 18px;
+  }
+  .achievements .work .work-text {
+    font-size: 15px;
+  }
+  .about-me {
+    padding: 40px 0;
+  }
+  .about-me img {
+    width: 400px;
+  }
+  .about-me-text {
+    width: 400px;
+  }
+  .about-me-text h2 {
+    font-size: 25px;
+  }
+  .about-me-text p {
+    font-size: 15px;
+  }
+  .footer {
+    padding: 40px 0;
+  }
+  .footer .copy {
+    text-align: center;
+  }
+  .bottom-links {
+    padding: 40px 0;
+  }
+  .bottom-links .links {
+    padding: 0;
+  }
+  .bottom-links .links span {
+    font-size: 18px;
+  }
+  .bottom-links .links a {
+    padding: 5px 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .intro {
+    height: 400px;
+    width: 80%;
+  }
+  .intro h1 {
+    font-size: 40px;
+  }
+  .intro p {
+    font-size: 15px;
+  }
+  .intro button {
+    font-size: 15px;
+  }
+  .achievements {
+    flex-direction: column;
+    padding: 40px 0;
+  }
+  .achievements .work {
+    padding: 20px 0;
+  }
+  .achievements .work i {
+    font-size: 40px;
+  }
+  .achievements .work .work-heading {
+    font-size: 15px;
+  }
+  .achievements .work .work-text {
+    font-size: 12px;
+  }
+  .about-me {
+    flex-direction: column;
+    padding: 40px 0;
+  }
+  .about-me img {
+    width: 200px;
+  }
+  .about-me-text {
+    width: 450px;
+  }
+  .about-me-text h2 {
+    font-size: 25px;
+  }
+  .about-me-text p {
+    font-size: 12px;
+  }
+  .footer {
+    flex-direction: column;
+    padding: 40px 0;
+  }
+  .footer .copy {
+    text-align: center;
+  }
+  .bottom-links {
+    padding: 40px 0;
+  }
+  .bottom-links .links {
+    padding: 0;
+  }
+  .bottom-links .links span {
+    font-size: 15px;
+  }
+  .bottom-links .links a {
+    padding: 5px 10px;
+  }
+}
+
 </style>
 {% endblock %}
